@@ -216,12 +216,6 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-/* Contenido de la pagina */
-.body-content{
-  margin: auto;
-  max-width: 1280px;
-}
-
 hr {
   margin: 1rem 0;
   color: inherit;
