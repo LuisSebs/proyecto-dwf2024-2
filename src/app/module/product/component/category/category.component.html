@@ -1,1 +1,36 @@
-<p>category works!</p>
+   <!--Contenido de la pagina-->
+   <div class="body-content">
+    <!--Titulo de la vista-->
+    <h1>Categorías</h1>
+    <div class="card border-warning mb-3">
+        <!--Card Header-->
+        <div class="card-header"></div>
+        <!--Card Body-->
+        <div class="card-body">
+            <!--Card Title-->
+            <h4 class="card-title">Categorías</h4>
+            <!--Tabla-->
+            <table class="table table-hover">
+                <thead>
+                    <tr class="table-dark">
+                        <th scope="col">Id</th>
+                        <th scope="col">Acrónimo</th>
+                        <th scope="col">Categoría</th>
+                        <th scope="col">Estatus</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for(categoria of categories; track categoria) {
+                        <tr>
+                            <td> {{ categoria.category_id }} </td>
+                            <td> {{ categoria.category }} </td>
+                            <td> {{ categoria.acronym }} </td>
+                            <td> {{ categoria.status }} </td>
+                        </tr>
+                    }            
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
