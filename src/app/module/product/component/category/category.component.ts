@@ -1,12 +1,17 @@
 import { Component } from '@angular/core';
-import { CategoryService } from '../../_service/category.service';
 import { Category } from '../../_model/category';
+import { CategoryService } from '../../_service/category.service';
+import { FormBuilder, Validators } from '@angular/forms'
+import Swal from 'sweetalert2';
+
+declare var $: any;
 
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
   styleUrl: './category.component.css'
 })
+
 export class CategoryComponent {
 
   categories: Category[] = [];
@@ -22,4 +27,14 @@ export class CategoryComponent {
   ngOnInit() {
     this.getCategories();
   }
+
+  showModalForm(){
+    $("#modalForm").modal("show");
+  }
+
+  hideModalForm(){
+    $("#modalForm").modal("hide");
+  }
+
+
 }
