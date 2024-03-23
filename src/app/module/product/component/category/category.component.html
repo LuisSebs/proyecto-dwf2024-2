@@ -45,23 +45,34 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
-            <div class="mb-3">
-              <label for="categoria" class="col-form-label">Categoria:</label>
-              <input type="text" class="form-control" id="categoria">
-            </div>
-            <div class="mb-3">
-              <label for="acronimo" class="col-form-label">Acronimo:</label>
-              <input type="text" class="form-control" id="acronimo">
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Agregar</button>
-        </div>
+          <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+	    <div>
+	      <label for="category">
+	        Categoria
+	      </label>
+	      <input id="category" class="form-control" type="text" formControlName="category" [ngClass]="{'is-invalid': submitted && checkoutForm.controls['category'].errors}">
+	      @if (checkoutForm.controls['category'].errors && submitted) {
+	      <small class="input-error-message"> Debe ingresar una categoria valida </small>
+	      }
+	    </div>
+
+	    <div>
+	      <label for="acronym">
+	        Acronimo
+	      </label>
+	      <input id="acronym" class="form-control" type="text" formControlName="acronym" [ngClass]="{'is-invalid': submitted && checkoutForm.controls['acronym'].errors}">
+	      @if (checkoutForm.controls['acronym'].errors && submitted) {
+	        <small class="input-error-message"> Debe ingresar un acronimo valido </small>
+	      }
+	    </div>
+
+	    <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)='onClose()'>Close</button>
+	      <button type="submit" class="btn btn-primary">Submit</button>
+	    </div>
+         </form>
+       </div>
       </div>
     </div>
-  </div>
-     
-</div>
+  </div> 
 
