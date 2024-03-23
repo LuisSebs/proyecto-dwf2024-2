@@ -62,7 +62,7 @@ export class CategoryComponent {
     }
     this.submitted = false;
     // Agregamos la categoria en la lista de categorias
-    let id = this.categories.length + 1;
+    let id = this.categories.length;
     let categoria = new Category(id, this.checkoutForm.controls['category'].value!,
 				 this.checkoutForm.controls['acronym'].value!, 1);
     this.categories.push(categoria);
