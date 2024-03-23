@@ -55,7 +55,7 @@ export class CategoryComponent {
 	toast: true,
 	text: 'Input invalido',
 	background: '#E8F8F8',
-	showConfirmationButton: false,
+	showConfirmButton: false,
 	timer: 3000
       });
       return;
@@ -78,7 +78,7 @@ export class CategoryComponent {
       toast: true,
       text: 'La nueva categoria ha sido agregada',
       background: '#E8F8F8',
-      showConfirmationButton: false,
+      showConfirmButton: false,
       timer: 3000
     });
   }
