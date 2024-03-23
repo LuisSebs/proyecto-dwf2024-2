@@ -39,6 +39,8 @@ export class CategoryComponent {
 
   showModalForm(){
     $("#modalForm").modal("show");
+    this.submitted = false;
+    this.checkoutForm.reset();
   }
 
   hideModalForm(){
@@ -83,8 +85,7 @@ export class CategoryComponent {
     });
   }
 
-  onClose() { 
+  onClose() {
     this.hideModalForm();
-    this.checkoutForm.reset();
   }
 }
