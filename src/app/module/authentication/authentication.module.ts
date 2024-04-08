@@ -6,10 +6,12 @@ import { AppRoutingModule } from '../../app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     SecuredComponent,
+    LoginComponent,
   ],
   imports: [
     CommonModule,
