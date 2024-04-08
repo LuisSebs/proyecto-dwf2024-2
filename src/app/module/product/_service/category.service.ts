@@ -1,21 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Category } from '../_model/category';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { api_dwb_uri } from '../../../shared/uri/api-dwb-uri';
+import { Observable } from 'rxjs';
+import { ApiResponse } from '../../commons/_dto/api-response';
+
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class CategoryService {
 
-  categories: Category[] = []
+  private source = "/category";
 
-  constructor() { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
-  getCategories(){
-    this.categories.push(new Category(0, "juego de rol", "RPG", 1));
-    this.categories.push(new Category(1, "battle royale", "BR", 0));
-    this.categories.push(new Category(2, "shooter", "TPS", 1));
-
-    return this.categories;
+  getCategories(): Observable<HttpResponse<Category[]>>{
+    return this.http.get<Category[]>(api_dwb_uri + this.source, { observe: 'response' });
   }
 
 }

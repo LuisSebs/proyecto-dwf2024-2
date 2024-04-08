@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Category } from '../../_model/category';
 import { CategoryService } from '../../_service/category.service';
-import { FormBuilder, Validators } from '@angular/forms'
+import { FormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { SwalMessages } from '../../../commons/_dto/swal-messages';
 
 declare var $: any;
 
@@ -16,6 +17,8 @@ export class CategoryComponent {
 
   categories: Category[] = [];
 
+  categoryToUpdate: number = 0;
+
   // Category form
   checkoutForm = this.formBuilder.group({
     category: ["", [Validators.required]],
@@ -24,17 +27,27 @@ export class CategoryComponent {
 
   submitted = false;
 
+  swal: SwalMessages = new SwalMessages(); // swal messages
+
   constructor(
     private categoryService: CategoryService,
     private formBuilder: FormBuilder,
   ) { }
 
-  getCategories() {
-    this.categories = this.categoryService.getCategories();
-  }
-
   ngOnInit() {
     this.getCategories();
+  }
+
+  getCategories() {
+    this.categoryService.getCategories().subscribe({
+      next: (v) => {
+        this.categories = v.body!;
+      },
+      error: (e) => {
+        console.log(e);
+        this.swal.errorMessage(e.error!.message); // show message
+      }
+    });
   }
 
   showModalForm(){
