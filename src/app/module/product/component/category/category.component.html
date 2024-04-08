@@ -1,0 +1,78 @@
+<!--Contenido de la pagina-->
+<div class="body-content">
+<!--Titulo de la vista-->
+<h1>Categorías</h1>
+<div class="card border-warning mb-3">
+    <!--Card Header-->
+    <div class="card-header"></div>
+    <!--Card Body-->
+    <div class="card-body">
+        <!--Card Title-->
+        <h4 class="card-title">Categorías</h4>
+        <!--Boton para agregar categoria-->
+        <button type="button" class="btn btn-primary" style="float: right;" (click)="showModalForm()">
+            Nueva categoria
+        </button>
+        <!--Tabla-->
+        <table class="table table-hover">
+            <thead>
+                <tr class="table-dark">
+                    <th scope="col">Id</th>
+                    <th scope="col">Acrónimo</th>
+                    <th scope="col">Categoría</th>
+                    <th scope="col">Estatus</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(categoria of categories; track categoria) {
+                    <tr>
+                        <td> {{ categoria.category_id }} </td>
+                        <td> {{ categoria.category }} </td>
+                        <td> {{ categoria.acronym }} </td>
+                        <td> {{ categoria.status }} </td>
+                    </tr>
+                }            
+            </tbody>
+        </table>
+    </div>
+</div>
+<!--MODAL-->
+<div class="modal fade" id="modalForm" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Nueva Categoria</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+	    <div>
+	      <label for="category">
+	        Categoria
+	      </label>
+	      <input id="category" class="form-control" type="text" formControlName="category" [ngClass]="{'is-invalid': submitted && checkoutForm.controls['category'].errors}">
+	      @if (checkoutForm.controls['category'].errors && submitted) {
+	      <small class="input-error-message"> Debe ingresar una categoria valida </small>
+	      }
+	    </div>
+
+	    <div>
+	      <label for="acronym">
+	        Acronimo
+	      </label>
+	      <input id="acronym" class="form-control" type="text" formControlName="acronym" [ngClass]="{'is-invalid': submitted && checkoutForm.controls['acronym'].errors}">
+	      @if (checkoutForm.controls['acronym'].errors && submitted) {
+	        <small class="input-error-message"> Debe ingresar un acronimo valido </small>
+	      }
+	    </div>
+
+	    <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)='onClose()'>Close</button>
+	      <button type="submit" class="btn btn-primary">Submit</button>
+	    </div>
+         </form>
+       </div>
+      </div>
+    </div>
+  </div> 
+
