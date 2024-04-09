@@ -21,6 +21,7 @@
                     <th scope="col">Acrónimo</th>
                     <th scope="col">Categoría</th>
                     <th scope="col">Estatus</th>
+                    <th>Mas</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,7 +30,33 @@
                         <td> {{ categoria.category_id }} </td>
                         <td> {{ categoria.category }} </td>
                         <td> {{ categoria.acronym }} </td>
-                        <td> {{ categoria.status }} </td>
+                        <td> 
+                          <div class="td-status" [ngClass]="{'td-status-enable': categoria.status == 1, 'td-status-disable': categoria.status == 0}">
+                            {{ categoria.status == 0? "Inactivo" : "Activo" }}
+                          </div>
+                        </td>
+
+                        <td>
+                          <div class="dropdown">
+                            <!-- dots button -->
+                            <button class="dropdown-button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" >
+                              <i class="ph ph-dots-three-outline-vertical icon-menu"></i>
+                            </button>
+
+                            <!-- menu options -->
+                            <div class="dropdown-menu" arial-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" (click)="updateCategory(categoria)">
+                                <i class="ph ph-note-pencil icon-text-ul"></i>Editar
+                              </a>
+                              <a *ngIf="categoria.status == 0" class="dropdown-item enable-item" (click)="activateCategory(categoria.category_id)">
+                                <i class="ph ph-check-circle icon-text-ul"></i>Activar
+                              </a>
+                              <a *ngIf="categoria.status == 1" class="dropdown-item disable-item" (click)="deleteCategory(categoria.category_id)">
+                                <i class="ph ph-x-circle icon-text-ul"></i>Desactivar
+                              </a>
+                            </div>
+                          </div>                            
+                        </td>
                     </tr>
                 }            
             </tbody>

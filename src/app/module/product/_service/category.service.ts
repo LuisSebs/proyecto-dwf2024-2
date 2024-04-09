@@ -4,6 +4,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { api_dwb_uri } from '../../../shared/uri/api-dwb-uri';
 import { Observable } from 'rxjs';
 import { ApiResponse } from '../../commons/_dto/api-response';
+import { ThisReceiver } from '@angular/compiler';
 
 
 @Injectable({
@@ -18,8 +19,31 @@ export class CategoryService {
     private http: HttpClient
   ) { }
 
-  getCategories(): Observable<HttpResponse<Category[]>>{
+  getCategories(): Observable<HttpResponse<Category[]>> {
     return this.http.get<Category[]>(api_dwb_uri + this.source, { observe: 'response' });
   }
 
+  getCategory(id: number): Observable<HttpResponse<Category>> {
+    return this.http.get<Category>(api_dwb_uri + this.source + "/" + id, { observe: 'response' });
+  }
+
+  getActiveCategories(): Observable<HttpResponse<Category[]>> {
+    return this.http.get<Category[]>(api_dwb_uri + this.source + "/active", { observe: 'response' });
+  }
+
+  createCategory(category: any): Observable<HttpResponse<ApiResponse>> {
+    return this.http.post<ApiResponse>(api_dwb_uri + this.source, category, { observe: 'response' });
+  }
+
+  updateCategory(category: any, id: number): Observable<HttpResponse<ApiResponse>> {
+    return this.http.put<ApiResponse>(api_dwb_uri + this.source + "/" + id, category, { observe: 'response' });
+  }
+
+  deleteCategory(id: number): Observable<HttpResponse<ApiResponse>> {
+    return this.http.delete<ApiResponse>(api_dwb_uri + this.source + "/" + id, { observe: 'response' });
+  }
+
+  activateCategory(id: number): Observable<HttpResponse<ApiResponse>> {
+    return this.http.put<ApiResponse>(api_dwb_uri + this.source + "/" + id + "/activate", null, { observe: 'response' });
+  }
 }

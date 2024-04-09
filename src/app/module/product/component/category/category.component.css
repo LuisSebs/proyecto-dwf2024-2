@@ -2,3 +2,39 @@
 .input-error-message{
     color: red;
 }
+
+.dropdown-button{
+    border: none;
+    color: white;
+    background-color: #FF000000;
+}
+
+.dropdown-item{
+    cursor: pointer;
+}
+
+.enable-item{
+    color: blue !important;
+    cursor: pointer;
+}
+
+.disable-item{
+    color: red !important;
+    cursor: pointer;
+}
+
+.td-status{
+    position: absolute;
+    width: 100px;
+    text-align: center;
+    border-radius: 8px;
+    color: white;
+}
+
+.td-status-enable{
+    background-color: #3498db;
+}
+
+.td-status-disable{
+    background-color: #e74c3c;
+}
