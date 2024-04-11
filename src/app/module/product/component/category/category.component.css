@@ -1,6 +1,6 @@
 /*Mensaje de error*/
 .input-error-message{
-    color: red;
+    color: #C44133;
 }
 
 .dropdown-button{
@@ -13,13 +13,17 @@
     cursor: pointer;
 }
 
+.dropdown-item:hover{
+    color: white !important;
+}
+
 .enable-item{
-    color: blue !important;
+    color: greenyellow !important;
     cursor: pointer;
 }
 
 .disable-item{
-    color: red !important;
+    color: hotpink !important;
     cursor: pointer;
 }
 
@@ -32,9 +36,9 @@
 }
 
 .td-status-enable{
-    background-color: #3498db;
+    background-color: #2C81BA;
 }
 
 .td-status-disable{
-    background-color: #e74c3c;
+    background-color: #C44133;
 }
