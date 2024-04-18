@@ -173,4 +173,9 @@ export class CategoryComponent {
   onClose() {
     this.hideModalForm();
   }
+
+  categoryById(category_id: number){
+    const result = this.categories.find(category => category.category_id == category_id);
+    return result;
+  }
 }

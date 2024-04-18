@@ -68,7 +68,12 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Nueva Categoria</h5>
+          @if (categoryToUpdate == 0){
+            <h5 class="modal-title" id="exampleModalLabel">Nueva Categoria</h5>
+          }@else{
+            <h5 class="modal-title" id="exampleModalLabel">{{categoryById(categoryToUpdate)?.category}}</h5>
+          }
+          
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -94,8 +99,12 @@
 	    </div>
 
 	    <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)='onClose()'>Close</button>
-	      <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)='onClose()'>Cerrar</button>
+	      @if(categoryToUpdate == 0){
+          <button type="submit" class="btn btn-primary">Agregar</button>
+        }@else{
+          <button type="submit" class="btn btn-primary">Editar</button>
+        }
 	    </div>
          </form>
        </div>

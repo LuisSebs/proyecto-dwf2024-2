@@ -7,6 +7,7 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { AuthenticationService } from '../_service/authentication.service';
 import { faKey, faUserSecret } from '@fortawesome/free-solid-svg-icons';
 import { LoginResponse } from '../_model/login-response';
+import { SwalMessages } from '../../commons/_dto/swal-messages';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,8 @@ export class LoginComponent implements OnInit {
 
   usernameIcon = faUserSecret;
   passwordIcon = faKey;
+
+  swal: SwalMessages = new SwalMessages(); // swal messages
 
   loginForm = new FormGroup(
     {
@@ -66,7 +69,9 @@ export class LoginComponent implements OnInit {
           this.showLoading = false;
         },
         (errorResponse: HttpErrorResponse) => {
-          alert(errorResponse.error.message);
+          // alert(errorResponse.error.message);
+          this.swal.errorMessage(
+            "Lo sentimos, no se puede iniciar sesión en este momento debido a un problema con nuestros servidores. Por favor, inténtalo de nuevo más tarde.");
           this.showLoading = false;
         }
       )
