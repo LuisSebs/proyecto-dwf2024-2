@@ -5,7 +5,7 @@ import { ProductComponent } from '../../product/component/product/product/produc
 import { CategoryComponent } from '../../product/component/category/category.component';
 import { LoginComponent } from '../../authentication/login/login.component';
 import { RegisterComponent } from '../../authentication/register/register.component';
-
+import { ProductDetailComponent } from '../../product/component/product-detail/product-detail.component';
 
 export const AppLayoutRoutes: Routes = [
     {path: '', component: LoginComponent},
@@ -13,5 +13,6 @@ export const AppLayoutRoutes: Routes = [
     {path: 'register', component: RegisterComponent},
     {path: 'categoria', component: CategoryComponent},
     {path: 'producto', component: ProductComponent},
-    {path: 'secured', component: SecuredComponent, canActivate : [authenticationGuard]}
+    {path: 'secured', component: SecuredComponent, canActivate : [authenticationGuard]},
+    {path: 'producto/:gtin', component: ProductDetailComponent}
 ];
