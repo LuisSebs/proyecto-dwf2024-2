@@ -200,7 +200,7 @@ export class ProductComponent {
   }
 
   showProduct(gtin: string){
-    this.router.navigate(['product/' + gtin]);
+    this.router.navigate(['producto/' + gtin]);
   }
 
   // catalogos
