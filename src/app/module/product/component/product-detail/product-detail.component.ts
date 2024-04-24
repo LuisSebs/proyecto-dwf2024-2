@@ -13,6 +13,7 @@ import { ProductImageService } from '../../_service/product-image.service';
 
 import { NgxPhotoEditorService } from 'ngx-photo-editor';
 import Swal from'sweetalert2';
+import { SwalMessages } from '../../../commons/_dto/swal-messages';
 
 declare var $: any; // JQuery
 
@@ -39,6 +40,7 @@ export class ProductDetailComponent {
   });
 
   submitted = false; // Variable para saber si el formulario ha sido enviado
+  swal: SwalMessages = new SwalMessages(); // swal messages
 
   redirect(url: string[]){
     this.router.navigate(url);
@@ -54,5 +56,4 @@ export class ProductDetailComponent {
 
     private service: NgxPhotoEditorService
   ){}
-
 }
