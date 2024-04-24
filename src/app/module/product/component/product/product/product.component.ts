@@ -5,7 +5,8 @@ import { ProductService } from '../../../_service/product.service';
 import { DtoProductList } from '../../../_dto/dto-product-list'; 
 import { Category } from '../../../_model/category';
 import { CategoryService } from '../../../_service/category.service';
-import { Product } from '../../../_model/product';
+// import { Product } from '../../../_model/product';
+import { Router } from '@angular/router';
 
 declare var $: any; // JQuery
 
@@ -39,6 +40,7 @@ export class ProductComponent {
     private categoryService: CategoryService,
     private productService: ProductService,
     private formBuilder: FormBuilder,
+    private router: Router,
   ){}
 
   ngOnInit(){
@@ -158,7 +160,7 @@ export class ProductComponent {
     });
   }
 
-  updateProduct(gtin: string){
+  updateProduct(gtin: string) {
     this.productService.getProduct(gtin).subscribe({
       next: (v) => {
         let product = v.body!;
@@ -195,6 +197,10 @@ export class ProductComponent {
 
   hideModalForm(){
     $("#modalForm").modal("hide");
+  }
+
+  showProduct(gtin: string){
+    this.router.navigate(['product/' + gtin]);
   }
 
   // catalogos
