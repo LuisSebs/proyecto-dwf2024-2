@@ -61,7 +61,7 @@ export class ProductDetailComponent {
     this.gtin = this.route.snapshot.paramMap.get('gtin')!;
     if(this.gtin){
       this.getProduct();
-      //this.getActiveRegions();
+      //this.getCategories();
     }else{
       this.swal.errorMessage("GTIN inválido"); // show message
     }
@@ -70,7 +70,7 @@ export class ProductDetailComponent {
   getProduct(){
     this.productService.getProduct(this.gtin).subscribe({
       next: (v) => {
-        return v.body!;
+        this.product = v.body!;
       },
       error: (e) => {
         console.log(e);
