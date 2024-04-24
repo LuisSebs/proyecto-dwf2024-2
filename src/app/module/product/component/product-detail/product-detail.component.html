@@ -19,7 +19,7 @@
             <!-- image  -->
 
             <div class="card-body-customer text-center">
-               <!-- <img src="{{ customer.image.image != '' ? customer.image.image: 'assets/images/user-logo-default.png' }}" alt="..." class="img-thumbnail customer-image"> -->
+               <img src="{{ product.image.image != '' ? product.image.image: '../../../../../../../assets/images/user-logo-default.png }}" alt="..." class="img-thumbnail product-image">
                place holder for image
             </div>
 
@@ -27,8 +27,8 @@
 
             <div class="edit-customer-image text-center">
                 <label for="uploadImage" class="cursor-pointer">
-                    <!-- <input type="file" (change)="fileChangeHandler($event)" id="uploadImage" style="display:none"> -->
-                    <input type="file" id="uploadImage" style="display:none">
+                    <input type="file" (change)="fileChangeHandler($event)" id="uploadImage" style="display:none">
+                    <!-- <input type="file" id="uploadImage" style="display:none"> -->
                     <i class="ph ph-note-pencil icon-text-button"></i>
                     Editar imagen
                 </label>
