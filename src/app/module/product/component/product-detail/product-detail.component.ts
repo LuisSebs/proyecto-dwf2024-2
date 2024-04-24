@@ -51,9 +51,69 @@ export class ProductDetailComponent {
     public ProductImageService: ProductImageService,
     private formBuilder: FormBuilder,
     private categoryService: CategoryService,
-    // private route: ActivatedRoute,
+    private route: ActivatedRoute,
     private router: Router, // router por si queremos redirigir a otro componente
 
     private service: NgxPhotoEditorService
   ){}
+
+  ngOnInit(){
+    this.gtin = this.route.snapshot.paramMap.get('gtin')!;
+    if(this.gtin){
+      Swal.fire("Producto " + this.gtin);
+      this.getProduct();
+      //this.getActiveRegions();
+    }else{
+      this.swal.errorMessage("GTIN inválido"); // show message
+    }
+  }
+
+  getProduct(){
+    this.productService.getProduct(this.gtin).subscribe({
+      next: (v) => {
+        return v.body!;
+      },
+      error: (e) => {
+        console.log(e);
+        this.swal.errorMessage(e.error!.message); // show message
+      }
+    });
+  }
+
+  fileChangeHandler($event: any) {
+    this.service.open($event, {
+      aspectRatio: 1/1,
+      autoCropArea: 1,
+      resizeToWidth: 360,
+      resizeToHeight: 360,
+    }).subscribe(data => {
+      this.updateProductImage(data.base64!);
+    });
+  }
+
+  updateProductImage(image: string){
+    let productImage: ProductImage = new ProductImage();
+    productImage.product_image_id = this.product.image.product_image_id;
+    productImage.image = image;
+
+    this.ProductImageService.updateProductImage(productImage).subscribe({
+      next: (v) => {
+        this.swal.successMessage(v.body!.message); // show message
+        this.getProduct(); // reload customer
+        this.hideModalForm(); // close modal
+      },
+      error: (e) => {
+        console.error(e);
+        this.swal.errorMessage(e.error!.message); // show message
+      }
+    });
+  }
+
+  hideModalForm(){
+    $("#modalForm").modal("hide")
+  }
+
+  showModalForm(){
+    $("#modalForm").modal("show")
+  }
 }
