@@ -25,10 +25,12 @@ export class ProductDetailComponent {
   product: Product = new Product();
   categories: Category[] = [];
 
+  gtin: string = "";
+
     // Product form
   form = this.formBuilder.group({
     product: ["", [Validators.required]],
-    // gtin: ["", [Validators.required, Validators.pattern('^[0-9]{13}$')]],
+    gtin: ["", [Validators.required, Validators.pattern('^[0-9]{13}$')]],
     description: ["", [Validators.required]],
     price: [0, [Validators.required, Validators.pattern('^[0-9]*$')]],
     stock: [0, [Validators.required, Validators.pattern('^[0-9]*$')]],
