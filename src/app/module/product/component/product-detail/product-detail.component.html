@@ -1,1 +1,115 @@
-<p>product-detail works!</p>
+<!-- Regresar a productos-->
+<div class="card-header">
+  <span class="btn-return" (click)="redirect(['producto'])">
+      <i class="ph ph-arrow-circle-left icon-text-button"></i>
+      Regresar
+  </span>
+</div>
+
+<br>
+
+<div class="card-body">
+  <div class="row">
+
+      <!-- Product image  -->
+
+      <div class="col-md-4">
+          <div class="card">
+
+            <!-- image  -->
+
+            <div class="card-body-customer text-center">
+               <!-- <img src="{{ customer.image.image != '' ? customer.image.image: 'assets/images/user-logo-default.png' }}" alt="..." class="img-thumbnail customer-image"> -->
+               place holder for image
+            </div>
+
+            <!-- Boton para editar  -->
+
+            <div class="edit-customer-image text-center">
+                <label for="uploadImage" class="cursor-pointer">
+                    <!-- <input type="file" (change)="fileChangeHandler($event)" id="uploadImage" style="display:none"> -->
+                    <input type="file" id="uploadImage" style="display:none">
+                    <i class="ph ph-note-pencil icon-text-button"></i>
+                    Editar imagen
+                </label>
+            </div>
+          </div>
+      </div>
+
+      <!-- Product data  -->
+
+      <div class="col-md-8">
+          <div class="card">
+              <div class="card-body-customer">
+
+                  <!-- name  -->
+
+                  <div class="product-title">
+                      {{ product.product }}
+                  </div>
+
+                  <table class="table">
+                      <tbody>
+
+                          <!-- id  -->
+                          <tr>
+                              <th class="col-md-4">Id</th>
+                              <td>{{ product.product_id}}</td>
+                          </tr>
+
+                          <!-- gtin  -->
+                          <tr>
+                              <th class="col-md-4">Gtin</th>
+                              <td>{{ product.gtin }}</td>
+                          </tr>
+
+                          <!-- descripcion  -->
+                          <tr>
+                              <th class="col-md-4">Descripcion</th>
+                              <td>{{ product.description }}</td>
+                          </tr>
+
+                          <!-- precio  -->
+                          <tr>
+                              <th class="col-md-4">Precio</th>
+                              <td>{{ product.price }}</td>
+                          </tr>
+
+                           <!-- stock  -->
+                           <tr>
+                            <th class="col-md-4">Stock</th>
+                            <td>{{ product.stock }}</td>
+                        </tr>
+
+                          <!-- Categoria  -->
+                          <tr>
+                            <th class="col-md-4">Categoria</th>
+                            <td>{{ product.category_id }}</td>
+                        </tr>
+
+                          <!-- Estatus -->
+                          <tr>
+                            <th class="col-md-4">Estatus</th>
+                            <td>{{ product.status }}</td>
+                        </tr>
+                      </tbody>
+                  </table>
+
+                  <!-- botones  -->
+
+                  <!-- <button type="button" class="btn btn-primary btn-edith" (click)="updateCustomer()"> -->
+                  <button type="button" class="btn btn-primary btn-edith">
+                      <i class="ph ph-note-pencil"></i>
+                      Editar
+                  </button>
+
+                  <button type="button" class="btn btn-danger btn-edith">
+                      <i class="ph ph-trash"></i>
+                      Eliminar
+                  </button>
+              </div>
+          </div>
+      </div>
+
+  </div>
+</div>
