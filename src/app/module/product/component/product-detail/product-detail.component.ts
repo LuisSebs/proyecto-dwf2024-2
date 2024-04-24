@@ -60,7 +60,6 @@ export class ProductDetailComponent {
   ngOnInit(){
     this.gtin = this.route.snapshot.paramMap.get('gtin')!;
     if(this.gtin){
-      Swal.fire("Producto " + this.gtin);
       this.getProduct();
       //this.getActiveRegions();
     }else{
