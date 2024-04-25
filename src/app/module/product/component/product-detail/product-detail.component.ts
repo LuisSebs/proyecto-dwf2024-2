@@ -2,15 +2,12 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
-
 import { Product } from '../../_model/product';
 import { Category } from '../../_model/category';
 import { ProductImage } from '../../_model/product-image';
-
 import { ProductService } from '../../_service/product.service';
 import { CategoryService } from '../../_service/category.service';
 import { ProductImageService } from '../../_service/product-image.service';
-
 import { NgxPhotoEditorService } from 'ngx-photo-editor';
 import Swal from'sweetalert2';
 import { SwalMessages } from '../../../commons/_dto/swal-messages';

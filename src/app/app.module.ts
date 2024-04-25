@@ -8,7 +8,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationModule } from './module/authentication/authentication.module';
 
-
+import { NgxPhotoEditorModule } from 'ngx-photo-editor';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { jwtInterceptorInterceptor } from './core/interceptor/jwt-interceptor.interceptor';
 
@@ -20,7 +20,8 @@ import { jwtInterceptorInterceptor } from './core/interceptor/jwt-interceptor.in
     BrowserModule,
     AppRoutingModule,
     ProductModule,
-    AuthenticationModule
+    AuthenticationModule,
+    NgxPhotoEditorModule
   ],
   providers: [
     provideHttpClient(withInterceptors([jwtInterceptorInterceptor]))
