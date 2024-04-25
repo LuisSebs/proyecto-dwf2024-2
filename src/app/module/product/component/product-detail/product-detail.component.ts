@@ -25,6 +25,9 @@ declare var $: any; // JQuery
 export class ProductDetailComponent {
   product: Product = new Product();
   categories: Category[] = [];
+  imageDefault: String = "../../../../../../../assets/images/user-logo-default.png";
+  productImgs: ProductImage[] = [];
+  
 
   gtin: string = "";
 
@@ -48,7 +51,7 @@ export class ProductDetailComponent {
 
   constructor(
     private productService: ProductService,
-    public ProductImageService: ProductImageService,
+    public productImageService: ProductImageService,
     private formBuilder: FormBuilder,
     private categoryService: CategoryService,
     private route: ActivatedRoute,
@@ -61,7 +64,6 @@ export class ProductDetailComponent {
     this.gtin = this.route.snapshot.paramMap.get('gtin')!;
     if(this.gtin){
       this.getProduct();
-      //this.getCategories();
     }else{
       this.swal.errorMessage("GTIN inválido"); // show message
     }
@@ -71,6 +73,20 @@ export class ProductDetailComponent {
     this.productService.getProduct(this.gtin).subscribe({
       next: (v) => {
         this.product = v.body!;
+        this.getProductImages();
+      },
+      error: (e) => {
+        console.log(e);
+        this.swal.errorMessage(e.error!.message); // show message
+      }
+    });
+  }
+
+  getProductImages(){
+    this.productImageService.getProductImages(this.product.category_id).subscribe({
+      next: (v) => {
+        this.productImgs = v.body!;
+        console.log(this.productImgs)
       },
       error: (e) => {
         console.log(e);
@@ -95,7 +111,7 @@ export class ProductDetailComponent {
     productImage.product_image_id = this.product.image.product_image_id;
     productImage.image = image;
 
-    this.ProductImageService.updateProductImage(productImage).subscribe({
+    this.productImageService.updateProductImage(productImage).subscribe({
       next: (v) => {
         this.swal.successMessage(v.body!.message); // show message
         this.getProduct(); // reload customer
