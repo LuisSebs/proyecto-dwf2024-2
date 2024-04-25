@@ -28,3 +28,21 @@
 .cursor-pointer{
     cursor: pointer;
 }
+
+.carousel-del {
+    position: absolute;
+    left: 0;
+    top: 15px;
+    z-index: 2;
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 5%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: lightgray;
+    border-radius: 8px;
+    height: 40px;
+    width: 32px;
+}
