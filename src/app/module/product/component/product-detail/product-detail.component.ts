@@ -99,26 +99,38 @@ export class ProductDetailComponent {
       resizeToWidth: 360,
       resizeToHeight: 360,
     }).subscribe(data => {
-      this.updateProductImage(data.base64!);
+      this.uploadProductImage(data.base64!);  
     });
   }
 
-  updateProductImage(image: string){
-    let productImage: ProductImage = new ProductImage();
-    productImage.product_image_id = this.product.image.product_image_id;
-    productImage.image = image;
-
-    this.productImageService.updateProductImage(productImage).subscribe({
+  deleteProductImage(product_image_id: number){
+    this.productImageService.deleteProductImage(product_image_id).subscribe({
       next: (v) => {
         this.swal.successMessage(v.body!.message); // show message
-        this.getProduct(); // reload customer
-        this.hideModalForm(); // close modal
+        this.getProduct(); // reload product
+        this.hideModalForm();
       },
       error: (e) => {
         console.error(e);
         this.swal.errorMessage(e.error!.message); // show message
       }
-    });
+    })
+  }
+
+  uploadProductImage(image: string){
+    let productImage: ProductImage = new ProductImage();
+    productImage.image = image
+    productImage.product_id = this.product.product_id;
+    this.productImageService.uploadProductImage(productImage).subscribe({
+      next: (v) => {
+        this.swal.successMessage(v.body!.message); // show message
+        this.getProduct(); // reload product
+      },
+      error: (e) => {
+        console.error(e);
+        this.swal.errorMessage(e.error!.message); // show message
+      }
+    });    
   }
 
   hideModalForm(){

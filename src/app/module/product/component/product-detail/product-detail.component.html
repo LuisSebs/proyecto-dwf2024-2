@@ -27,9 +27,9 @@
                     <div *ngFor="let prod of productImgs; let i = index" class="carousel-item"
                         [class.active]="i === 0">
                         <div class="carousel-del">
-                            <!--<a (click)="deleteProductImage(prod.product_image_id)" class="trash"><i class="fas fa-trash-alt cursor-pointer"></i></a>-->
+                            <a (click)="deleteProductImage(prod.product_image_id)" class="btn btn-danger"><i class="ph ph-trash"></i></a>
                         </div>
-                        <img src="{{ prod.image !== '' ? 'assets/imagenes/'+prod.image : imageDefault}}"
+                        <img src="{{ prod.image !== '' ? prod.image : imageDefault}}"
                             class="d-block w-100" alt="...">
                     </div>
                 </div>
@@ -52,9 +52,9 @@
                     </div>
                     <div *ngFor="let prod of productImgs" class="carousel-item active">
                         <div class="carousel-del">
-                            <!--<a (click)="deleteProductImage(prod.product_image_id)" class="trash"><i class="fas fa-trash-alt cursor-pointer"></i></a>-->
+                            <a (click)="deleteProductImage(prod.product_image_id)" class="btn btn-danger"><i class="ph ph-trash"></i></a>
                         </div>
-                        <img src="{{ prod.image !== '' ? 'assets/imagenes/'+prod.image : imageDefault}}"
+                        <img src="{{ prod.image !== '' ? prod.image : imageDefault}}"
                             class="d-block w-100" alt="...">
                     </div>
                 </div>
@@ -63,10 +63,10 @@
     <!-- Boton para editar  -->
 
     <div class="edit-product-image text-center">
-        <label for="uploadImage" class="cursor-pointer">
+        <label for="uploadImage" class="cursor-pointer btn btn-primary">
             <input type="file" (change)="fileChangeHandler($event)" id="uploadImage" style="display:none">
             <i class="ph ph-note-pencil icon-text-button"></i>
-            Editar imagen
+            Agregar imagen
         </label>
     </div>
         </div>
