@@ -134,7 +134,7 @@
                   <!-- botones  -->
 
                   <!-- <button type="button" class="btn btn-primary btn-edith" (click)="updateCustomer()"> -->
-                  <button type="button" class="btn btn-primary btn-edith">
+                  <button type="button" class="btn btn-primary btn-edith" (click)="updateProduct()">
                       <i class="ph ph-note-pencil"></i>
                       Editar
                   </button>
@@ -150,7 +150,128 @@
   </div>
 </div>
 
+<!-- Modal para editar producto -->
+<div class="modal fade" data-bs-backdrop="static" tabindex="-1" role="dialog" id="modalForm">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">Editar producto</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span>
+          </button>
+        </div>
 
+    <div class="modal-body">
+
+    <!-- form  -->
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <div class="row">
+
+          <!-- campo para gtin  -->
+
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label for="gtin">GTIN <span class="text-danger">*</span> </label>
+                  <input type="text" class="form-control form-edit" formControlName="gtin" id="gtin" placeholder="GTIN del producto..."
+                      [ngClass]="{'is-invalid': form.controls['gtin'].errors && submitted}" >
+                  <div *ngIf="form.controls['gtin'].errors && submitted">
+                      <small class="text-danger">Favor de ingresar un GTIN válido</small>
+                  </div>
+              </div>
+          </div>
+
+          <!-- campo para producto  -->
+
+          <div class="col-md-6">
+              <div class="form-group">
+              <label for="product">Producto <span class="text-danger">*</span> </label>
+              <input type="text" class="form-control form-edit" formControlName="product" id="product" placeholder="Nombre del producto..."
+                  [ngClass]="{'is-invalid': form.controls['product'].errors && submitted}" >
+              <div *ngIf="form.controls['product'].errors && submitted">
+                  <small class="text-danger">Favor de ingresar un nombre válido para el producto</small>
+              </div>
+              </div>
+          </div>
+
+          <br><br><br>
+
+          <!-- campo para el precio  -->
+
+          <div class="col-md-6">
+              <div class="form-group">
+              <label for="price">Precio <span class="text-danger">*</span> </label>
+              <input type="text" class="form-control form-edit" formControlName="price" id="price" placeholder="Precio del producto..."
+                  [ngClass]="{'is-invalid': form.controls['price'].errors && submitted}" >
+              <div *ngIf="form.controls['price'].errors && submitted">
+                  <small class="text-danger">Favor de ingresar un precio válido</small>
+              </div>
+              </div>
+          </div>
+
+          <br>
+
+          <!-- campo para el stock  -->
+
+          <div class="col-md-6">
+              <div class="form-group">
+              <label for="stock">Cantidad de unidades disponibles <span class="text-danger">*</span> </label>
+              <input type="text" class="form-control form-edit" formControlName="stock" id="stock" placeholder="Unidades disponibles..."
+                  [ngClass]="{'is-invalid': form.controls['stock'].errors && submitted}" >
+              <div *ngIf="form.controls['stock'].errors && submitted">
+                  <small class="text-danger">Favor de ingresar una cantidad de productos válida</small>
+              </div>
+              </div>
+          </div>
+
+          <br><br><br>
+
+          <!-- campo para el id de la categoria  -->
+
+          <div class="col-md-6">
+              <div class="form-group">
+                <label for="category_id">Categoría <span class="text-danger">*</span> </label>
+                <select class="form-select form-edit" formControlName="category_id" id="category_id"
+                    [ngClass]="{'is-invalid': form.controls['category_id'].errors && submitted}">
+                    <option [ngValue]=null hidden>Seleccione una categoría</option>
+                    <ng-container *ngFor="let category of categories" >
+                        <option *ngIf="category.status == 1" [ngValue]="category.category_id">{{ category.category }}</option>
+                    </ng-container>
+                </select>
+                <div *ngIf="form.controls['category_id'].errors && submitted">
+                    <small class="text-danger">Seleccione una categoría</small>
+                </div>
+              </div>
+          </div>
+
+          <br><br><br>
+
+          <!-- campo para la descripcion  -->
+
+          <div class="form-group">
+            <label for="description">Descripción <span class="text-danger">*</span> </label>
+            <textarea rows="2" class="form-control form-edit" formControlName="description" id="description" placeholder="Descripción del producto..."
+              [ngClass]="{'is-invalid': form.controls['description'].errors && submitted}" >
+            </textarea>
+            <div *ngIf="form.controls['description'].errors && submitted">
+              <small class="text-danger">Favor de ingresar una descripción válida</small>
+            </div>
+          </div>
+      </div>
+
+      <br>
+
+      <!-- Boton de guardado  -->
+      <div class="form-button">
+          <button type="submit" class="btn btn-form">Guardar cambios</button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+</div>
 
 <!-- product image  -->
 <!--
