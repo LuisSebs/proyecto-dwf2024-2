@@ -173,7 +173,16 @@ export class ProductDetailComponent {
     this.productService.updateProduct(this.form.value, this.product.product_id).subscribe({
       next: (v) => {
         this.swal.successMessage(v.body!.message); // Mostramos mensaje si se modifico correctamente el producto
+        // recargamos el url y los datos del producto si cambia el gtin del mismo
+        if(this.form.controls['gtin'].value != this.gtin){
+          this.gtin = this.form.controls['gtin'].value!;
 
+          let currentUrl = this.router.url.split("/");
+          currentUrl.pop();
+          currentUrl.push(this.gtin);
+
+          this.redirect(currentUrl);
+        }
         this.getProduct();
         this.hideModalForm();
 
