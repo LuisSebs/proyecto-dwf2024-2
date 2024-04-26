@@ -163,7 +163,26 @@ export class ProductDetailComponent {
   }
 
   onSubmit() {
-    // Falta por implementar
+    this.submitted = true;
+    if(this.form.invalid)
+      return; // si el formulario es invalido, entonces no hacemos nada
+    this.submitted = false;
+
+    console.log(this.form.value);
+
+    this.productService.updateProduct(this.form.value, this.product.product_id).subscribe({
+      next: (v) => {
+        this.swal.successMessage(v.body!.message); // Mostramos mensaje si se modifico correctamente el producto
+
+        this.getProduct();
+        this.hideModalForm();
+
+      },
+      error: (e) => {
+        console.error(e);
+        this.swal.errorMessage(e.error!.message);
+      }
+    });
   }
 
   hideModalForm(){
