@@ -81,7 +81,7 @@ export class ProductDetailComponent {
   }
 
   getProductImages(){
-    this.productImageService.getProductImages(this.product.category_id).subscribe({
+    this.productImageService.getProductImages(this.product.product_id).subscribe({
       next: (v) => {
         this.productImgs = v.body!;
         console.log(this.productImgs)
@@ -122,6 +122,7 @@ export class ProductDetailComponent {
     let productImage: ProductImage = new ProductImage();
     productImage.image = image
     productImage.product_id = this.product.product_id;
+    console.log(this.product.product_id);
     this.productImageService.uploadProductImage(productImage).subscribe({
       next: (v) => {
         this.swal.successMessage(v.body!.message); // show message
@@ -164,6 +165,7 @@ export class ProductDetailComponent {
 
   onSubmit() {
     this.submitted = true;
+    console.log(this.form.valid);
     if(this.form.invalid)
       return; // si el formulario es invalido, entonces no hacemos nada
     this.submitted = false;
