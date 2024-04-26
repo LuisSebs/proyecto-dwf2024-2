@@ -61,6 +61,7 @@ export class ProductDetailComponent {
     this.gtin = this.route.snapshot.paramMap.get('gtin')!;
     if(this.gtin){
       this.getProduct();
+      this.getActiveCategories();
     }else{
       this.swal.errorMessage("GTIN inválido"); // show message
     }
@@ -147,6 +148,18 @@ export class ProductDetailComponent {
     this.form.controls['category_id'].setValue(this.product.category_id);
     this.form.controls['status'].setValue(this.product.status);
     $("#modalForm").modal("show");
+  }
+
+  getActiveCategories() {
+    this.categoryService.getActiveCategories().subscribe({
+      next: (v) => {
+        this.categories = v.body!;
+      },
+      error: (e) => {
+        console.log(e);
+        this.swal.errorMessage(e.error!.message); // show message
+      }
+    });
   }
 
   onSubmit() {
