@@ -5,6 +5,7 @@ import  { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductComponent } from './component/product/product/product.component';
 import { NgxPhotoEditorModule } from 'ngx-photo-editor';
 import { ProductDetailComponent } from './component/product-detail/product-detail.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ProductDetailComponent } from './component/product-detail/product-detai
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxPhotoEditorModule
+    NgxPhotoEditorModule,
+    FontAwesomeModule
   ]
 })
 export class ProductModule { }

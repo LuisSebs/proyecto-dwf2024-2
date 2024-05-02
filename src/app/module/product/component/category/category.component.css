@@ -1,29 +1,31 @@
 /*Mensaje de error*/
 .input-error-message{
-    color: #C44133;
+    color: #df382c;
 }
 
 .dropdown-button{
     border: none;
-    color: white;
+    color: #252525;
     background-color: #FF000000;
 }
 
 .dropdown-item{
     cursor: pointer;
+    color: #252525;
 }
 
 .dropdown-item:hover{
     color: white !important;
+    background-color: #772953;
 }
 
 .enable-item{
-    color: greenyellow !important;
+    color: #38b44a !important;
     cursor: pointer;
 }
 
 .disable-item{
-    color: hotpink !important;
+    color: #df382c !important;
     cursor: pointer;
 }
 
@@ -40,5 +42,5 @@
 }
 
 .td-status-disable{
-    background-color: #C44133;
+    background-color: #df382c;
 }

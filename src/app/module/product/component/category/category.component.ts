@@ -4,6 +4,7 @@ import { CategoryService } from '../../_service/category.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { SwalMessages } from '../../../commons/_dto/swal-messages';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 declare var $: any;
 
@@ -14,6 +15,8 @@ declare var $: any;
 })
 
 export class CategoryComponent {
+
+  iconPlus = faPlus
 
   categories: Category[] = [];
 

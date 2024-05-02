@@ -1,0 +1,17 @@
+.container{   
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.content{
+    padding: 24px;
+}
+
+h2{
+    padding-bottom: 24px;
+}
+
+.btn{
+    width: 100%;
+}

@@ -1,22 +1,28 @@
 <!--Contenido de la pagina-->
 <div class="body-content">
-<!--Titulo de la vista-->
-<h1>Categorías</h1>
-<div class="card border-warning mb-3">
+<div class="card border-dark mb-3">
     <!--Card Header-->
-    <div class="card-header"></div>
-    <!--Card Body-->
-    <div class="card-body">
-        <!--Card Title-->
-        <h4 class="card-title">Categorías</h4>
-        <!--Boton para agregar categoria-->
-        <button type="button" class="btn btn-primary" style="float: right;" (click)="showModalForm()">
+    <div class="card-header">
+      <div class="row">
+        <div class="col">
+          <h4>Listado de categorias</h4>
+        </div>
+        <div class="col">
+          <!--Boton para agregar categoria-->
+          <button type="button" class="btn btn-primary" style="float: right;" (click)="showModalForm()">
+            <fa-icon [icon]="iconPlus"></fa-icon>
             Nueva categoria
-        </button>
+          </button>
+        </div>        
+      </div>
+    </div>
+    
+    <!--Card Body-->
+    <div class="card-body">    
         <!--Tabla-->
         <table class="table table-hover">
-            <thead>
-                <tr class="table-dark">
+            <thead class="thead-dark">
+                <tr class="table-primary">
                     <th scope="col">Id</th>
                     <th scope="col">Acrónimo</th>
                     <th scope="col">Categoría</th>
@@ -103,7 +109,7 @@
 	      @if(categoryToUpdate == 0){
           <button type="submit" class="btn btn-primary">Agregar</button>
         }@else{
-          <button type="submit" class="btn btn-primary">Editar</button>
+          <button type="submit" class="btn btn-dark">Editar</button>
         }
 	    </div>
          </form>
