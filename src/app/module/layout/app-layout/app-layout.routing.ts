@@ -6,9 +6,10 @@ import { CategoryComponent } from '../../product/component/category/category.com
 import { LoginComponent } from '../../authentication/login/login.component';
 import { RegisterComponent } from '../../authentication/register/register.component';
 import { ProductDetailComponent } from '../../product/component/product-detail/product-detail.component';
+import { HomeComponent } from './home/home.component';
 
 export const AppLayoutRoutes: Routes = [
-    {path: '', component: LoginComponent},
+    {path: '', component: HomeComponent},
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'categoria', component: CategoryComponent},

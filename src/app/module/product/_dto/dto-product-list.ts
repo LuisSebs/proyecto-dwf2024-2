@@ -1,3 +1,5 @@
+import { ProductImage } from "../_model/product-image";
+
 export class DtoProductList{
     product_id: number = 0;
     product: string = "";
@@ -5,4 +7,5 @@ export class DtoProductList{
     price: number = 0;
     category_id: number = 0;
     status: number = 0;
+    image: ProductImage = new ProductImage();
 }

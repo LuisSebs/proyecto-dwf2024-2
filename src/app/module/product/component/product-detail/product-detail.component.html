@@ -63,12 +63,12 @@
     <!-- Boton para editar  -->
 
     <div class="edit-product-image text-center">
-        <label for="uploadImage" class="cursor-pointer btn btn-primary">
+        <label for="uploadImage" class="cursor-pointer btn btn-dark">
             <input type="file" (change)="fileChangeHandler($event)" id="uploadImage" style="display:none">
             <i class="ph ph-note-pencil icon-text-button"></i>
             Agregar imagen
         </label>
-    </div>
+    </div>Agregar
         </div>
       </div>
 
@@ -134,7 +134,7 @@
                   <!-- botones  -->
 
                   <!-- <button type="button" class="btn btn-primary btn-edith" (click)="updateCustomer()"> -->
-                  <button type="button" class="btn btn-primary btn-edith" (click)="updateProduct()">
+                  <button type="button" class="btn btn-dark btn-edit" (click)="updateProduct()">
                       <i class="ph ph-note-pencil"></i>
                       Editar
                   </button>

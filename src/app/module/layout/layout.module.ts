@@ -6,6 +6,7 @@ import { NavbarComponent } from './app-layout/navbar/navbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule } from '@angular/router';
 import { AppLayoutRoutes } from './app-layout/app-layout.routing';
+import { HomeComponent } from './app-layout/home/home.component';
 
 
 
@@ -13,7 +14,8 @@ import { AppLayoutRoutes } from './app-layout/app-layout.routing';
   declarations: [
     AppLayoutComponent,
     FooterComponent,
-    NavbarComponent
+    NavbarComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,
