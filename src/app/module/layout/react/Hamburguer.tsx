@@ -15,7 +15,7 @@ export const Hamburguer = () => {
     return <>
         <Environment preset='city'/>
 
-        <color args={ ["#E4B03C"] } attach="background" />
+        <color args={ ["#241a1a"] } attach="background" />
         <PresentationControls
             global
             polar={ [ -0.4, 0.2 ] }
@@ -53,9 +53,9 @@ export const Hamburguer = () => {
                     rotation-y={ - 1.25 }
                     maxWidth={ 2 }
                     textAlign="center"
-                    color={'#42322E'}
+                    color={'#FFF'}
                 >
-                    ¿HAMBRE?
+                    Comida
                 </Text>
             </Float>
         </PresentationControls>

@@ -15,7 +15,7 @@ const Experience = () => {
                 position: [ -3, 1.5, 4 ]
             } }
         >
-            <Laptop/>
+            <Hamburguer/>
         </Canvas>
     )
 }
