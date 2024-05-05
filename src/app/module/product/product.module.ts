@@ -6,12 +6,14 @@ import { ProductComponent } from './component/product/product/product.component'
 import { NgxPhotoEditorModule } from 'ngx-photo-editor';
 import { ProductDetailComponent } from './component/product-detail/product-detail.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ProductClientComponent } from './component/product-client/product-client.component';
 
 @NgModule({
   declarations: [
     CategoryComponent,
     ProductDetailComponent,
-    ProductComponent
+    ProductComponent,
+    ProductClientComponent
   ],
   imports: [
     CommonModule,
