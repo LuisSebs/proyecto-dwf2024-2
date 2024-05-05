@@ -32,7 +32,13 @@
                         </div>
                     </div>
                 </div>
-            }
+            }            
         </div>
+        @if(productNotFound){
+            <h3>¡Oops! sin resultados</h3>
+            <div class="image-not-found-container">            
+                <img class="product-not-found" src="../../../../../assets/images/product-not-found-img.svg" alt="producto no encontrado" />
+            </div>
+        }
     </div>
 </section>

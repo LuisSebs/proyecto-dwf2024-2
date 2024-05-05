@@ -27,6 +27,10 @@ export class ProductClientComponent {
   // Categoria seleccionada
   selectQuery: String = '-1';
 
+  // Product not found status
+  productNotFound: boolean = false;
+
+
   constructor(
     private categoryService: CategoryService,
     private productService: ProductService,
@@ -78,6 +82,11 @@ export class ProductClientComponent {
       this.productsFound = this.products.filter(product => {
         return product.product.toLowerCase().includes(this.searchQuery.toLowerCase());
       });
+      if (this.productsFound.length === 0){
+        this.productNotFound = true;
+      }else{
+        this.productNotFound = false;
+      }
     }
   }
 
@@ -89,6 +98,11 @@ export class ProductClientComponent {
       this.productsFound = this.products.filter(product => {
         return product.category_id === Number(this.selectQuery);
       });
+      if (this.productsFound.length === 0){
+        this.productNotFound = true;
+      }else{
+        this.productNotFound = false;
+      }
     }
   }
 
@@ -102,7 +116,6 @@ export class ProductClientComponent {
         this.swal.errorMessage(e.error!.message); // show message
       }
     });
-
   }
 
 }

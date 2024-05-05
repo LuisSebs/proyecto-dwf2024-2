@@ -9,4 +9,19 @@
     width: 232px;
 }
 
+.image-not-found-container{
+    display: flex;
+    justify-content: center;
+}
+
+h3{
+    text-align: center;
+}
+
+
+
+.product-not-found{
+    width: 70%;
+}
+
 
