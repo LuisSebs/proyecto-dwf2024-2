@@ -5,6 +5,8 @@ import { ProductImage } from '../../../product/_model/product-image';
 import { ProductImageService } from '../../../product/_service/product-image.service';
 import { ProductService } from '../../../product/_service/product.service';
 import { Router } from '@angular/router';
+import { CategoryService } from '../../_service/category.service';
+import { Category } from '../../_model/category';
 
 @Component({
   selector: 'app-product-client',
@@ -13,22 +15,28 @@ import { Router } from '@angular/router';
 })
 export class ProductClientComponent {
   
+  categories: Category[] = [];
   products: DtoProductList[] = []; // arreglo original
   productsFound: DtoProductList[] = []; // productos encontrados, para no modificar el original
   swal: SwalMessages = new SwalMessages();
   logo: String = "../../../../assets/icons8-logo.svg";
 
   // Texto de la barra de busqueda
-  searchQuery: String = ''
+  searchQuery: String = '';
+
+  // Categoria seleccionada
+  selectQuery: String = '-1';
 
   constructor(
+    private categoryService: CategoryService,
     private productService: ProductService,
-    private productImageService: ProductImageService,
+    private productImageService: ProductImageService,    
     private router: Router,
   ){}
 
   ngOnInit(){
     this.getProducts();
+    this.getActiveCategories();
   }
 
   getProducts(){
@@ -64,12 +72,37 @@ export class ProductClientComponent {
 
   searchProduct(){
     if (this.searchQuery.trim() === ''){
-      this.productsFound = [... this.products]
+      this.productsFound = [... this.products];
     }else{
-      // Filtramos por lo que ingreso el usuario
+      // Filtramos por nombre de producto
       this.productsFound = this.products.filter(product => {
         return product.product.toLowerCase().includes(this.searchQuery.toLowerCase());
       });
     }
   }
+
+  searchProductByCategory(){
+    if (this.selectQuery === '-1'){
+      this.productsFound = [... this.products];
+    }else{
+      // Filtramos por categoria
+      this.productsFound = this.products.filter(product => {
+        return product.category_id === Number(this.selectQuery);
+      });
+    }
+  }
+
+  getActiveCategories(){
+    this.categoryService.getActiveCategories().subscribe({
+      next: (v) => {
+        this.categories = v.body!;
+      },
+      error: (e) => {
+        console.log(e);
+        this.swal.errorMessage(e.error!.message); // show message
+      }
+    });
+
+  }
+
 }

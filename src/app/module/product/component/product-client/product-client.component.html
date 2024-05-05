@@ -2,8 +2,14 @@
 <section class="py-5">    
     <div class="container px-4 px-lg-5 mt-5">
         <form class="d-flex bar-search-container" (ngSubmit)="searchProduct()">
+            <select class="form-select form-select-sm" aria-label="Default select example" [(ngModel)]="selectQuery" (ngModelChange)="searchProductByCategory()" name="categoria">                
+                <option selected [value]="-1">Todas las categorias</option>
+                @for(categoria of categories; track categoria){
+                    <option [value]="categoria.category_id">{{ categoria.category }}</option>
+                }
+            </select>
             <input class="form-control me-sm-2 bar-search" type="search" placeholder="Buscar Store.com" [(ngModel)]="searchQuery" (ngModelChange)="searchProduct()" name="busqueda">
-            <button class="btn btn-dark my-2 my-sm-0" type="submit">Buscar</button>
+            <button class="btn btn-dark my-2 my-sm-0" type="submit">Buscar</button>            
         </form>
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             @for(product of productsFound; track product){
