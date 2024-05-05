@@ -24,6 +24,7 @@ export class ProductDetailComponent {
   categories: Category[] = [];
   imageDefault: String = "../../../../../../../assets/images/user-logo-default.png";
   productImgs: ProductImage[] = [];
+  isAdmin = false;
   
 
   gtin: string = "";
@@ -58,6 +59,13 @@ export class ProductDetailComponent {
   ){}
 
   ngOnInit(){
+    // Verificamos si el usuario es admin
+    if(localStorage.getItem("token") && localStorage.getItem("user")){
+      let user = JSON.parse(localStorage.getItem("user")!)
+      if(user.rol == "ADMIN"){
+        this.isAdmin = true;
+      }
+    }
     this.gtin = this.route.snapshot.paramMap.get('gtin')!;
     if(this.gtin){
       this.getProduct();
@@ -84,7 +92,7 @@ export class ProductDetailComponent {
     this.productImageService.getProductImages(this.product.product_id).subscribe({
       next: (v) => {
         this.productImgs = v.body!;
-        console.log(this.productImgs)
+        //console.log(this.productImgs)
       },
       error: (e) => {
         console.log(e);

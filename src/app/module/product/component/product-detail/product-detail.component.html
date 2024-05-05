@@ -42,7 +42,9 @@
                     </div>
                     <div *ngFor="let prod of productImgs" class="carousel-item active">
                         <div class="carousel-del">
-                            <a (click)="deleteProductImage(prod.product_image_id)" class="btn btn-danger"><i class="ph ph-trash"></i></a>
+                            @if(isAdmin){
+                                <a (click)="deleteProductImage(prod.product_image_id)" class="btn btn-danger"><i class="ph ph-trash"></i></a>
+                            }
                         </div>
                         <img src="{{ prod.image !== '' ? prod.image : imageDefault}}"
                             class="d-block w-100" alt="...">
@@ -53,11 +55,13 @@
     <!-- Boton para editar  -->
 
     <div class="edit-product-image text-center">
-        <label for="uploadImage" class="cursor-pointer btn btn-dark">
-            <input type="file" (change)="fileChangeHandler($event)" id="uploadImage" style="display:none">
-            <i class="ph ph-note-pencil icon-text-button"></i>
-            Agregar imagen
-        </label>
+        @if(isAdmin){
+            <label for="uploadImage" class="cursor-pointer btn btn-dark">
+                <input type="file" (change)="fileChangeHandler($event)" id="uploadImage" style="display:none">
+                <i class="ph ph-note-pencil icon-text-button"></i>
+                Agregar imagen
+            </label>
+        }
     </div>
         </div>
       </div>
@@ -124,15 +128,16 @@
                   <!-- botones  -->
 
                   <!-- <button type="button" class="btn btn-primary btn-edith" (click)="updateCustomer()"> -->
-                  <button type="button" class="btn btn-dark btn-edit" (click)="updateProduct()">
-                      <i class="ph ph-note-pencil"></i>
-                      Editar
-                  </button>
-
-                  <button type="button" class="btn btn-danger btn-edith">
-                      <i class="ph ph-trash"></i>
-                      Eliminar
-                  </button>
+                  @if(isAdmin){
+                    <button type="button" class="btn btn-dark btn-edit" (click)="updateProduct()">
+                        <i class="ph ph-note-pencil"></i>
+                        Editar
+                    </button>
+                    <button type="button" class="btn btn-danger btn-edith">
+                        <i class="ph ph-trash"></i>
+                        Eliminar
+                    </button>
+                  }
               </div>
           </div>
       </div>
