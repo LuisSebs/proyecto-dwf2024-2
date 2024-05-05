@@ -36,7 +36,7 @@ export const Hamburguer = () => {
                 width={ 2.0 }
                 height={ 5 }
                 intensity={ 30 }
-                color={ '#8034eb' }
+                color={ '#ebba34' }
                 rotation={ [ 0.1, Math.PI, 0 ] }
                 position={ [ 1, 1.5, -0.2] }
             />
@@ -46,6 +46,17 @@ export const Hamburguer = () => {
                     object={ hamburger.scene } 
                     position-y={ - 1.2 }
                 />
+                <Text
+                    font='../../../../assets/bangers-v20-latin-regular.woff'
+                    fontSize={ 1 }
+                    position={ [ 2.5, 0.75, 2 ] }
+                    rotation-y={ - 1.25 }
+                    maxWidth={ 2 }
+                    textAlign="center"
+                    color={'#42322E'}
+                >
+                    ¿HAMBRE?
+                </Text>
             </Float>
         </PresentationControls>
         

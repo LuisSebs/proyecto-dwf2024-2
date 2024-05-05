@@ -8,7 +8,8 @@ export const Laptop = () => {
 
     <Environment preset='city'/>
 
-    <color args={ ["#241a1a"] } attach="background"/>
+    {/*<color args={ ["#241a1a"] } attach="background"/>*/}
+    <color args={ ["#FFF"] } attach="background" />
 
     <PresentationControls
         global
@@ -23,7 +24,7 @@ export const Laptop = () => {
             <rectAreaLight 
                 width={ 2.5 }
                 height={ 1.65 }
-                intensity={ 65 }
+                intensity={ 90 }
                 color={ '#ff6900' }
                 rotation={ [ 0.1, Math.PI, 0 ] }
                 position={ [ 0, 0.55, - 1.15 ] }
@@ -40,8 +41,9 @@ export const Laptop = () => {
                 rotation-y={ - 1.25 }
                 maxWidth={ 2 }
                 textAlign="center"
+                color={'#241a1a'}
             >
-                BRUNO SIMON
+                Drag Lap
             </Text>
         </Float>
     </PresentationControls>
