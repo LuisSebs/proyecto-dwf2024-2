@@ -40,25 +40,25 @@ font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto
     justify-content: center;
     margin-top: 20px;
     margin-left: 10%;
-    color: #42322E;
-    border: 4px solid #42322E;
+    color: #E4B03C;
+    border: 4px solid #E4B03C;
     border-radius: 24px;
 }
 
 .food-text button{
     padding: 0.8rem 1.5rem;
-    color: #fff;
+    color: #E4B03C;
     font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-size: 1.5rem;
     font-weight: 700;
     border-radius: 12px;
     margin-top: 24px;
-    background-color: #252525;
-    border: 2px solid #252525;
+    background-color: #241a1a;
+    border: 2px solid #E4B03C;
 }
 
 .food-text button:hover{
-    background-color: #fff;
+    background-color: #E4B03C;
     color: #252525;
     border: 2px solid #252525;
 }
@@ -71,6 +71,27 @@ font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto
 }
 
 .mobile-icon{
-    fill: #252525;
+    fill: #E4B03C;
     width: 24px;
+}
+
+/** Services */
+.page-section {
+    padding: 6rem 0;
+}
+.page-section h2.section-heading, .page-section .section-heading.h2 {
+font-size: 2.5rem;
+margin-top: 0;
+margin-bottom: 1rem;
+}
+.page-section h3.section-subheading, .page-section .section-subheading.h3 {
+font-size: 1rem;
+font-weight: 400;
+font-style: italic;
+font-family: "Roboto Slab", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+margin-bottom: 4rem;
+}
+
+.service-icon{
+    fill: #efb73e;
 }

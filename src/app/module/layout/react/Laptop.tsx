@@ -8,8 +8,7 @@ export const Laptop = () => {
 
     <Environment preset='city'/>
 
-    {/*<color args={ ["#241a1a"] } attach="background"/>*/}
-    <color args={ ["#FFF"] } attach="background" />
+    <color args={ ["#241a1a"] } attach="background"/>
 
     <PresentationControls
         global
@@ -41,7 +40,7 @@ export const Laptop = () => {
                 rotation-y={ - 1.25 }
                 maxWidth={ 2 }
                 textAlign="center"
-                color={'#241a1a'}
+                color={'#fff'}
             >
                 Drag Lap
             </Text>
