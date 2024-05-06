@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { useState } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { Laptop } from './Laptop'
 import { Hamburguer } from './Hamburguer'
+import { Laptop } from './Laptop'
 
 const Experience = () => {
     return (

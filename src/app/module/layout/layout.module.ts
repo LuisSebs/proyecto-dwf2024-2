@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { AppLayoutRoutes } from './app-layout/app-layout.routing';
 import { HomeComponent } from './app-layout/home/home.component';
 import { ExperienceComponent } from './react/experience/experience.component';
+import { ThreejsComponent } from './react/threejs/threejs.component';
 
 
 
@@ -17,7 +18,8 @@ import { ExperienceComponent } from './react/experience/experience.component';
     FooterComponent,
     NavbarComponent,
     HomeComponent,
-    ExperienceComponent
+    ExperienceComponent,
+    ThreejsComponent
   ],
   imports: [
     CommonModule,
