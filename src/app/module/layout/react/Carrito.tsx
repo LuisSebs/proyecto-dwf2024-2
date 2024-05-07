@@ -32,8 +32,8 @@ export default function Carrito(){
     console.log(materials)
 
     const cubesCount = 20;
-    const directionalLight = useRef<THREE.DirectionalLight>(null!);
-    useHelper(directionalLight, THREE.DirectionalLightHelper, 1, "green");
+    // const directionalLight = useRef<THREE.DirectionalLight>(null!);
+    // useHelper(directionalLight, THREE.DirectionalLightHelper, 1, "green");
   
     const instances = useMemo(() => {
       const instances: InstancedRigidBodyProps[] = [];
@@ -70,21 +70,31 @@ export default function Carrito(){
         {/* <directionalLight castShadow position={ [ 1, 2, 3 ] } intensity={ 4.5 } /> */}
         {/* <ambientLight intensity={ 1.5 } /> */}
 
-        {/* <AccumulativeShadows
-            position={ [ 0, -99, 0 ] }
+        <AccumulativeShadows
+            temporal
+            frames={ 100 }
+            position={ [ 0, -0.99, 0 ] }
             scale={ 10 }
+            opacity={ 0.8 }
+            // color="#0390fc"
         >
             <RandomizedLight
-                position={ [ 4 ,4 ,0 ] }
+                position={ [ 4 ,4 ,1 ] }
+                amount={ 8 }
+                radius={ 1 }
+                ambient={ 0.5 }
+                intensity={ 3 }
+                bias={ 0.001 }
             />
-        </AccumulativeShadows> */}
+        </AccumulativeShadows>
 
-        <directionalLight 
-        castShadow
-        ref={ directionalLight }
-        position={ [ 4, 4, 1] }
-        intensity={ 3 }
-        />
+        {/* <directionalLight 
+            castShadow
+            ref={ directionalLight }
+            position={ [ 4, 4, 1 ] }
+            intensity={ 3 }
+            shadow-mapSize={ [ 1024, 1024 ] }
+        /> */}
 
 
         <Physics
@@ -125,10 +135,10 @@ export default function Carrito(){
             </mesh> */}
         </RigidBody>
 
-        <mesh receiveShadow position={ [ 0, -1, 0 ]} rotation-x={ - Math.PI * 0.5} scale={ 10 }>
+        {/* <mesh receiveShadow position={ [ 0, -1, 0 ]} rotation-x={ - Math.PI * 0.5} scale={ 10 }>
             <planeGeometry />
             <meshStandardMaterial color="greenyellow" />
-        </mesh>
+        </mesh> */}
         
         {/* Piso */}
         {/* <RigidBody
