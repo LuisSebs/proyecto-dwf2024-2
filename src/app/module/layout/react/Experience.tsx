@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Canvas } from '@react-three/fiber'
 import Carrito from './Carrito';
+import { Suspense } from 'react';
 
 const Experience = () => {
     return (
@@ -14,7 +15,9 @@ const Experience = () => {
                 position: [ -4.03, 3.7, 6.16 ]
             } }
         > 
-            <Carrito />
+            <Suspense>
+                <Carrito />
+            </Suspense>
         </Canvas>
     )
 }

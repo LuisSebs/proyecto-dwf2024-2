@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useMemo } from 'react'
-import { useFrame, useLoader } from '@react-three/fiber'
-import { RandomizedLight, AccumulativeShadows, Environment, useHelper, OrbitControls} from '@react-three/drei'
+import { useLoader } from '@react-three/fiber'
+import { RandomizedLight, AccumulativeShadows, Environment, OrbitControls} from '@react-three/drei'
 import { InstancedRigidBodies, InstancedRigidBodyProps, CuboidCollider, RigidBody, Physics } from '@react-three/rapier'
 import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { MathUtils } from 'three'
@@ -99,7 +99,7 @@ export default function Carrito(){
             friction={ 0.7 }
             colliders={ "trimesh" }
         >
-            <group scale={ 20 } position-y={ -1 }>
+            <group scale={ 20 } position-y={ -1 } dispose={null}>
                 <mesh
                     castShadow
                     geometry={obj1}
@@ -118,6 +118,7 @@ export default function Carrito(){
             </group>
         </RigidBody>
 
+        {/* Piso Collider */}
         <RigidBody
             colliders={ false }
             type='fixed'
@@ -137,3 +138,5 @@ export default function Carrito(){
 
     </>
 }  
+
+useLoader.preload(GLTFLoader,carrito);
