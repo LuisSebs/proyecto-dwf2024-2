@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useMemo, useRef } from 'react'
-import { Canvas, useLoader } from '@react-three/fiber'
+import { Canvas, useFrame, useLoader } from '@react-three/fiber'
 import { RandomizedLight, AccumulativeShadows, Environment, useHelper, OrbitControls, useGLTF, Sky } from '@react-three/drei'
 import { InstancedRigidBodies, InstancedRigidBodyProps, CylinderCollider, BallCollider, CuboidCollider, RigidBody, Physics } from '@react-three/rapier'
 import * as THREE from 'three'
@@ -28,6 +28,9 @@ export default function Carrito(){
     const obj2 = nodes['Object_5'].geometry;
     const obj3 = nodes['Object_6'].geometry;
 
+    useFrame((state, delta) => {
+        console.log(state.camera.position)
+    });
 
     console.log(nodes)
     console.log(materials)
@@ -64,7 +67,13 @@ export default function Carrito(){
 
     return <>
 
-        <OrbitControls makeDefault/>
+        <OrbitControls 
+            makeDefault
+            enablePan={ false }
+            enableZoom={ false }
+            minPolarAngle={ Math.PI / 4 }
+            maxPolarAngle={ Math.PI / 2 }
+        />
 
         <Environment preset='sunset'/>
 
@@ -158,7 +167,7 @@ export default function Carrito(){
         <InstancedRigidBodies instances={ instances }>
             <instancedMesh castShadow args={ [ undefined, undefined, cubesCount ] } count={ cubesCount } >
                     <boxGeometry args={ [ 0.25, 0.25, 0.25] }/>
-                    <meshStandardMaterial color="orange"/>
+                    <meshStandardMaterial color="#b0916e"/>
             </instancedMesh>
         </InstancedRigidBodies>
 

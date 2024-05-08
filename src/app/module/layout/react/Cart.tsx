@@ -13,10 +13,10 @@ export const Cart = () => {
       shadows
       className='r3f'
       camera={ {
-        fov: 45,
+        fov: 42,
         near: 0.1,
         far: 2000,
-        position: [ 4, 2, 8 ]
+        position: [ -4.03, 3.7, 6.16 ]
       } }
     > 
       <Carrito/>
