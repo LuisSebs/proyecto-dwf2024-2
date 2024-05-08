@@ -56,7 +56,7 @@
 
     <div class="edit-product-image text-center">
         @if(isAdmin){
-            <label for="uploadImage" class="cursor-pointer btn btn-dark">
+            <label for="uploadImage" class="cursor-pointer btn btn-warning">
                 <input type="file" (change)="fileChangeHandler($event)" id="uploadImage" style="display:none">
                 <i class="ph ph-note-pencil icon-text-button"></i>
                 Agregar imagen
@@ -129,7 +129,7 @@
 
                   <!-- <button type="button" class="btn btn-primary btn-edith" (click)="updateCustomer()"> -->
                   @if(isAdmin){
-                    <button type="button" class="btn btn-dark btn-edit" (click)="updateProduct()">
+                    <button type="button" class="btn btn-warning btn-edit" (click)="updateProduct()">
                         <i class="ph ph-note-pencil"></i>
                         Editar
                     </button>
@@ -137,6 +137,16 @@
                         <i class="ph ph-trash"></i>
                         Eliminar
                     </button>
+                  }@else{
+                    <button type="button" class="btn btn-warning" (click)="addToCart()">
+                        <i class="ph ph-shopping-cart"></i>
+                        Agregar al carrito
+                    </button>
+                    <select class="input-cantidad" aria-label="Default select example" [(ngModel)]="selectQuery" name="cantidad">                
+                        @for(i of max; track i){
+                            <option [value]="i">{{ i }}</option>
+                        }
+                    </select>
                   }
               </div>
           </div>

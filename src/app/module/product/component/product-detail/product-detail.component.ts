@@ -25,8 +25,13 @@ export class ProductDetailComponent {
   imageDefault: String = "../../../../../../../assets/images/user-logo-default.png";
   productImgs: ProductImage[] = [];
   isAdmin = false;
-  
 
+  // Cantidad de productos posibles a agregar
+  max: number[] = Array.from({length: 10}, (_, i) => i + 1);
+
+  // Cantidad de productor a agregar por default
+  selectQuery: number = 1;
+  
   gtin: string = "";
 
     // Product form
@@ -202,6 +207,10 @@ export class ProductDetailComponent {
         this.swal.errorMessage(e.error!.message);
       }
     });
+  }
+
+  addToCart(){
+    console.log(this.selectQuery);
   }
 
   hideModalForm(){
