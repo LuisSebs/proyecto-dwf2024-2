@@ -12,7 +12,15 @@ header .overlay{
 .overlay-text{
     float: right;
     text-align: center;
+    animation: fade 1s ease-in;
 }
+
+
+@keyframes fade {
+    0% { opacity: 0;}
+    100% {opacity: 1;}
+}
+
 
 .begin-button{
     padding: 10px 30px;
