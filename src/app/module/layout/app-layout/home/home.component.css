@@ -1,14 +1,47 @@
-header.masthead {
-    padding-top: 10.5rem;
-    padding-bottom: 6rem;
-    text-align: center;
-    color: #fff;
-    background-image: url("../../../../../assets/images/header-bg.jpg");
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-position: center center;
-    background-size: cover;
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+header .overlay{
+    position: absolute;
+    z-index: 1;
+    height: 100vh;
+    padding: 40px;
+    pointer-events: none;
+    width: 100%;
 }
+
+.overlay-text{
+    float: right;
+    text-align: center;
+}
+
+.begin-button{
+    padding: 10px 30px;
+    color: #252525;
+    border: 3px solid #252525;
+    border-radius: 0px;
+    font-weight: 400;
+    font-size: large;
+    font-family: "Roboto Condensed", sans-serif;
+    pointer-events: all;
+}
+
+.begin-button:hover{
+    background-color: #252525;
+    color: #fff;
+}
+
+.title{
+    font-weight: 300;
+    font-family: "Roboto Condensed", sans-serif;
+    color: #252525;
+}
+
+.subtitle{
+    font-weight: 600;
+    font-family: "Roboto Condensed", sans-serif;
+    color: #252525;
+}
+
 header.masthead .masthead-subheading {
 font-size: 1.5rem;
 font-style: italic;

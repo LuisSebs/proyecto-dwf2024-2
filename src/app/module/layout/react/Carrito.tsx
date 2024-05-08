@@ -67,7 +67,7 @@ export default function Carrito(){
 
         <Environment preset='sunset'/>
 
-        <color args={ ['#FFF'] } attach="background"/>
+        <color args={ ['ivory'] } attach="background"/>
 
         <AccumulativeShadows
             temporal
