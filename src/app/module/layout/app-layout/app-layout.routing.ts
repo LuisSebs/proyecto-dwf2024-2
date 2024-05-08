@@ -8,14 +8,15 @@ import { RegisterComponent } from '../../authentication/register/register.compon
 import { ProductDetailComponent } from '../../product/component/product-detail/product-detail.component';
 import { HomeComponent } from './home/home.component';
 import { ProductClientComponent } from '../../product/component/product-client/product-client.component';
+import { adminGuard } from '../../authentication/_guard/admin.guard';
 
 export const AppLayoutRoutes: Routes = [
     {path: '', component: HomeComponent},
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
-    {path: 'categoria', component: CategoryComponent},
-    {path: 'producto', component: ProductComponent},
-    {path: 'producto-cliente', component: ProductClientComponent},
+    {path: 'categoria', component: CategoryComponent, canActivate : [authenticationGuard, adminGuard]},
+    {path: 'producto-admin', component: ProductComponent, canActivate : [authenticationGuard, adminGuard]},
+    {path: 'producto', component: ProductClientComponent},
     {path: 'secured', component: SecuredComponent, canActivate : [authenticationGuard]},
     {path: 'producto/:gtin', component: ProductDetailComponent}
 ];
