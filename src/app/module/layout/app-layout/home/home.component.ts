@@ -24,7 +24,7 @@ export class HomeComponent {
   ){}
 
   ngOnInit(){
-    //this.getProducts();
+    this.getProducts();
   }
 
   getProducts(){

@@ -1,45 +1,39 @@
 import * as React from 'react'
-import { useMemo, useRef } from 'react'
-import { Canvas, useFrame, useLoader } from '@react-three/fiber'
-import { RandomizedLight, AccumulativeShadows, Environment, useHelper, OrbitControls, useGLTF, Sky } from '@react-three/drei'
-import { InstancedRigidBodies, InstancedRigidBodyProps, CylinderCollider, BallCollider, CuboidCollider, RigidBody, Physics } from '@react-three/rapier'
-import * as THREE from 'three'
+import { useMemo } from 'react'
+import { useFrame, useLoader } from '@react-three/fiber'
+import { RandomizedLight, AccumulativeShadows, Environment, useHelper, OrbitControls} from '@react-three/drei'
+import { InstancedRigidBodies, InstancedRigidBodyProps, CuboidCollider, RigidBody, Physics } from '@react-three/rapier'
 import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { MathUtils } from 'three'
+import * as THREE from 'three'
 
-// Define una interfaz que describa la estructura del modelo
+const carrito = '../../../../assets/shopping_cart.glb';
+
+// Interfaz para poder acceder a nodes y materials
 interface CustomModel extends GLTF {
     nodes: {
       [nodeName: string]: {
-        geometry?: THREE.BufferGeometry // Aquí se especifica el tipo de geometría que esperas
+        geometry?: THREE.BufferGeometry
       };
     },
     materials: {
         [materialName: string]: THREE.Material;
       };
-  }
+}
 
-export default function Carrito(){
+export default function Carrito(){ 
 
-    // const shoppingCart = useGLTF('../../../../assets/shopping_cart.glb');  
+    const { nodes, materials } = useLoader(GLTFLoader, carrito) as CustomModel;
+    const obj1 = nodes['Object_4'].geometry; // Ruedas
+    const obj2 = nodes['Object_5'].geometry; // Manublio
+    const obj3 = nodes['Object_6'].geometry; // Reja
 
-    const { nodes, materials } = useLoader(GLTFLoader, '../../../../assets/shopping_cart.glb') as CustomModel;
-    const obj1 = nodes['Object_4'].geometry;
-    const obj2 = nodes['Object_5'].geometry;
-    const obj3 = nodes['Object_6'].geometry;
-
-    useFrame((state, delta) => {
-        console.log(state.camera.position)
-    });
-
-    console.log(nodes)
-    console.log(materials)
-
+    // Cantidad de cubos
     const cubesCount = 80;
-    // const directionalLight = useRef<THREE.DirectionalLight>(null!);
-    // useHelper(directionalLight, THREE.DirectionalLightHelper, 1, "green");
-  
+    
+    // Para generar los cubos una sola vez (cache)
     const instances = useMemo(() => {
+
       const instances: InstancedRigidBodyProps[] = [];
 
       const rand = MathUtils.randFloatSpread;
@@ -61,10 +55,6 @@ export default function Carrito(){
       return instances;
     }, []);
   
-    const getRandomColor = () => {
-      return '#' + Math.floor(Math.random() * 16777215).toString(16);
-    };
-
     return <>
 
         <OrbitControls 
@@ -77,10 +67,7 @@ export default function Carrito(){
 
         <Environment preset='sunset'/>
 
-        {/* <color args={ ['#252525'] } attach="background"/> */}
-
-        {/* <directionalLight castShadow position={ [ 1, 2, 3 ] } intensity={ 4.5 } /> */}
-        {/* <ambientLight intensity={ 1.5 } /> */}
+        <color args={ ['#FFF'] } attach="background"/>
 
         <AccumulativeShadows
             temporal
@@ -101,18 +88,9 @@ export default function Carrito(){
             />
         </AccumulativeShadows>
 
-        {/* <directionalLight 
-            castShadow
-            ref={ directionalLight }
-            position={ [ 4, 4, 1 ] }
-            intensity={ 3 }
-            shadow-mapSize={ [ 1024, 1024 ] }
-        /> */}
-
-
         <Physics
-        gravity={ [ 0, - 2.5, 0 ] } 
-        debug={ false }
+            gravity={ [ 0, - 2.5, 0 ] } 
+            debug={ false }
         >
 
         {/* Carrito */}
@@ -147,22 +125,6 @@ export default function Carrito(){
             <CuboidCollider args={ [10, 0.5, 10] } position={ [ 0, -1.5, 0 ]}/>
         </RigidBody>
         
-        {/* Piso */}
-        {/* <RigidBody
-            type='fixed'
-            friction={ 0.7 }
-        >
-            <mesh position={ [ 0, 0, 0 ] }>
-            <boxGeometry args={ [ 10, 0.5, 10 ] }/>
-            <meshStandardMaterial color="greenyellow" />
-            </mesh>
-        </RigidBody> */}
-
-        {/* <mesh>
-            <planeGeometry args={ [ 10, 0.5, 10] }/>
-            <meshStandardMaterial  />
-        </mesh> */}
-
         {/* Cubos */}        
         <InstancedRigidBodies instances={ instances }>
             <instancedMesh castShadow args={ [ undefined, undefined, cubesCount ] } count={ cubesCount } >
@@ -171,6 +133,7 @@ export default function Carrito(){
             </instancedMesh>
         </InstancedRigidBodies>
 
-        </Physics>      
+        </Physics>
+
     </>
 }  
