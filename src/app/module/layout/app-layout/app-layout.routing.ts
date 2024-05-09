@@ -10,12 +10,14 @@ import { HomeComponent } from './home/home.component';
 import { ProductClientComponent } from '../../product/component/product-client/product-client.component';
 import { adminGuard } from '../../authentication/_guard/admin.guard';
 import { ProductDetailClientComponent } from '../../product/component/product-detail-client/product-detail-client.component';
+import { InvoiceComponent } from '../../invoice/component/invoice/invoice.component';
 
 export const AppLayoutRoutes: Routes = [
     {path: '', component: HomeComponent},
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'categoria', component: CategoryComponent, canActivate : [authenticationGuard, adminGuard]},
+    {path: 'factura', component: InvoiceComponent},
     {path: 'producto-admin', component: ProductComponent, canActivate : [authenticationGuard, adminGuard]},
     {path: 'producto', component: ProductClientComponent},
     {path: 'secured', component: SecuredComponent, canActivate : [authenticationGuard]},
