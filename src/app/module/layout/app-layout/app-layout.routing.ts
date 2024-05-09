@@ -9,6 +9,7 @@ import { ProductDetailComponent } from '../../product/component/product-detail/p
 import { HomeComponent } from './home/home.component';
 import { ProductClientComponent } from '../../product/component/product-client/product-client.component';
 import { adminGuard } from '../../authentication/_guard/admin.guard';
+import { ProductDetailClientComponent } from '../../product/component/product-detail-client/product-detail-client.component';
 
 export const AppLayoutRoutes: Routes = [
     {path: '', component: HomeComponent},
@@ -18,5 +19,6 @@ export const AppLayoutRoutes: Routes = [
     {path: 'producto-admin', component: ProductComponent, canActivate : [authenticationGuard, adminGuard]},
     {path: 'producto', component: ProductClientComponent},
     {path: 'secured', component: SecuredComponent, canActivate : [authenticationGuard]},
-    {path: 'producto/:gtin', component: ProductDetailComponent}
+    {path: 'producto/:gtin', component: ProductDetailComponent, canActivate: [authenticationGuard, adminGuard]},
+    {path: 'producto-detail/:gtin', component: ProductDetailClientComponent}
 ];

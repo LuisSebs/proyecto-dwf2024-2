@@ -26,9 +26,6 @@ export class ProductDetailComponent {
   productImgs: ProductImage[] = [];
   isAdmin = false;
 
-  // Cantidad de productos posibles a agregar
-  max: number[] = Array.from({length: 10}, (_, i) => i + 1);
-
   // Cantidad de productor a agregar por default
   selectQuery: number = 1;
   

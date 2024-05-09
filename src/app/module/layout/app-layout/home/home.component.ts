@@ -54,6 +54,13 @@ export class HomeComponent {
   }
 
   showProduct(gtin: string){
-    this.router.navigate(['producto/' + gtin]);
+    this.router.navigate(['producto-detail/' + gtin]);
+  }
+
+  priceFormat(price: number){
+    // Convierte el número a una cadena y lo formatea con separadores de miles y dos decimales
+    const precioFormateado = price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    // Retorna la cadena con el símbolo de la moneda y el formato deseado
+    return `$ ${precioFormateado}`;
   }
 }

@@ -1,14 +1,4 @@
 <!-- Masthead-->
-<!--
-<header class="masthead">
-    <div class="container">
-        <div class="masthead-subheading">¡Todo lo que buscas!</div>
-        <div class="masthead-heading text-uppercase">Desde la comodidad de tu hogar</div>
-        <a class="btn btn-warning btn-xl text-uppercase" href="#services">Comenzar</a>
-    </div>
-</header>
--->
-
 <header>
     <div class="overlay">
         <div class="overlay-text">
@@ -34,7 +24,7 @@
                                 <!-- Product name-->
                                 <h5 class="fw-bolder">{{ product.product }}</h5>
                                 <!-- Product price-->
-                                $ {{ product.price }}
+                                {{ priceFormat(product.price)}}
                             </div>
                         </div>
                         <!-- Product actions-->
