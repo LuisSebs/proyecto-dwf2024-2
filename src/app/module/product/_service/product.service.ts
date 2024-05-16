@@ -52,4 +52,8 @@ export class ProductService {
   updateProductStock(gtin: string, stock: number): Observable<HttpResponse<ApiResponse>> {
     return this.http.put<ApiResponse>(api_dwb_uri + this.source + "/" + gtin + "/stock"+ "/" + stock, null, { observe: 'response' });
   }
+
+  deleteProduct(id: number): Observable<HttpResponse<ApiResponse>> {
+    return this.http.delete<ApiResponse>(api_dwb_uri + this.source + "/" + id, {observe: 'response' });
+  }
 }

@@ -63,17 +63,21 @@
                         Envio gratis a todo el pais
                     </p>
                     <div>
-                        <span>Cantidad</span>
-                        <select class="cantidad" [(ngModel)]="selectQuery">
-                            @for(i of max; track i){
-                                <option value="{{ i }}">{{ i }}</option>
-                            }
-                        </select>
-                    </div>
-                    <button class="btn btn-warning">
-                        <i class="ph ph-shopping-cart"></i>
-                        Agregar al carrito
-                    </button>
+                        @if(product.stock > 0){
+                            <span>Cantidad</span>
+                            <select class="cantidad" [(ngModel)]="selectQuery">
+                                @for(i of max; track i){
+                                    <option value="{{ i }}">{{ i }}</option>
+                                }
+                            </select>
+                            <button class="btn btn-warning" (click)="addToCart()">
+                                <i class="ph ph-shopping-cart"></i>
+                                Agregar al carrito
+                            </button>
+                        }@else{
+                            <p>Sin disponibilidad</p>
+                        }
+                    </div>                    
                 </div>
                 <div class="pickup">
                     <strong>Click & Collect Galerias Insurgentes</strong>

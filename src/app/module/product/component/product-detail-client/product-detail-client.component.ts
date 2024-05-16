@@ -6,6 +6,8 @@ import { ProductImage } from '../../_model/product-image';
 import { CategoryService } from '../../_service/category.service';
 import { ProductImageService } from '../../_service/product-image.service';
 import { ProductService } from '../../_service/product.service';
+import { Cart } from '../../../invoice/_model/cart';
+import { CartService } from '../../../invoice/_service/cart.service';
 
 @Component({
   selector: 'app-product-detail-client',
@@ -19,15 +21,16 @@ export class ProductDetailClientComponent {
   productImgs: ProductImage[] = [];
   imageDefault: String = "../../../../../../../assets/images/user-logo-default.png";
   swal: SwalMessages  = new SwalMessages();  
-  max: number[] = Array.from({length: 10}, (_, i) => i + 1); // Cantidad permitida
+  max: number[] = []; // Cantidad permitida
   selectQuery: number = 1;
 
   constructor(
     private productService: ProductService,
     private productImageService: ProductImageService,
     private categoryService: CategoryService,
+    private cartService: CartService,
     private router: Router,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute,    
   ){}
 
   ngOnInit(){
@@ -43,6 +46,7 @@ export class ProductDetailClientComponent {
     this.productService.getProduct(this.gtin).subscribe({
       next: (v) => {
         this.product = v.body!;
+        this.max = this.product.stock > 0 ? Array.from({length: this.product.stock}, (_, i) => i + 1) : []
         this.getProductImages();
       },
       error: (e) => {
@@ -71,6 +75,18 @@ export class ProductDetailClientComponent {
     const precioFormateado = price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
     // Retorna la cadena con el símbolo de la moneda y el formato deseado
     return `$ ${precioFormateado}`;
+  }
+
+  addToCart(){
+    console.log(this.selectQuery)
+    this.cartService.addToCart({ gtin: this.product.gtin, quantity: this.selectQuery }).subscribe({
+      next: (v) => {
+        console.log(v.body!.message)
+      },
+      error: (e) => {
+        console.log(e.error!.message);
+      }
+    });
   }
 
 }

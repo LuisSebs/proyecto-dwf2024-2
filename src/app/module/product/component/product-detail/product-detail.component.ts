@@ -206,8 +206,30 @@ export class ProductDetailComponent {
     });
   }
 
-  addToCart(){
-    console.log(this.selectQuery);
+  deleteProduct(){
+    this.productService.deleteProduct(this.product.product_id).subscribe({
+      next: (v) => {
+        this.swal.successMessage("El producto ha sido desactivado");
+        this.getProduct();
+      },
+      error: (e) => {
+        console.log(e);
+        this.swal.errorMessage(e.error!.message);
+      }
+    });
+  }
+
+  activeProduct(){
+    this.productService.enableProduct(this.product.product_id).subscribe({
+      next: (v) => {
+        this.swal.successMessage(v.body!.message);
+        this.getProduct();
+      },
+      error: (e) => {
+        console.log(e);
+        this.swal.errorMessage(e.error!.message);
+      }
+    });
   }
 
   hideModalForm(){

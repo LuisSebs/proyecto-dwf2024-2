@@ -127,10 +127,18 @@
                         <i class="ph ph-note-pencil"></i>
                         Editar
                     </button>
-                    <button type="button" class="btn btn-danger btn-edith">
-                        <i class="ph ph-trash"></i>
-                        Eliminar
-                    </button>
+                    @if(product.status == 1){
+                        <button type="button" class="btn btn-danger btn-edith" (click)="deleteProduct()">
+                            <i class="ph ph-power"></i>
+                            Desactivar
+                        </button>
+                    }@else{
+                        <button type="button" class="btn btn-success btn-edith" (click)="activeProduct()">
+                            <i class="ph ph-power"></i>
+                            Activar
+                        </button>
+                    }
+                    
               </div>
           </div>
       </div>

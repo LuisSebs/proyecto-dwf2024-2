@@ -65,7 +65,8 @@ export class ProductClientComponent {
       },
       error: (e) => {
         console.log(e);
-        this.swal.errorMessage(e.error!.message); // show message
+        // this.swal.errorMessage(e.error!.message); // show message
+        this.swal.errorMessage("Lo sentimos, nuestros servidores estan caidos, intente más tarde");
       }
     });
   }

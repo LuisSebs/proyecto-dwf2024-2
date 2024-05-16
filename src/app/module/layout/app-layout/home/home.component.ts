@@ -38,9 +38,8 @@ export class HomeComponent {
               product.image = v.body![0];              
               // console.log(product.image);
             },
-            error: (e) => {
-              console.log(e);
-              this.swal.errorMessage(e.error!.message); // show message
+            error: (e) => {              
+              // Error
             }
           })
 
@@ -48,7 +47,8 @@ export class HomeComponent {
       },
       error: (e) => {
         console.log(e);
-        this.swal.errorMessage(e.error!.message); // show message
+        //this.swal.errorMessage(e.error!.message); // show message
+        this.swal.errorMessage("Lo sentimos, nuestros servidores estan caidos, intente más tarde");
       }
     });
   }
