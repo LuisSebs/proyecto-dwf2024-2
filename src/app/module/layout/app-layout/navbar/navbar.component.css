@@ -10,3 +10,70 @@ fa-icon{
 .navbar{
     background-color: #252525 !important;
 }
+
+.sidebar{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;    
+    z-index: 1;
+    display: flex;
+}
+
+.sidebar-main{
+    min-width: 250px;
+    height: 100%;
+    padding: 15px;
+    background-color: #fff;
+}
+
+.sidebar-header{
+    display: flex;  
+    margin-bottom: 24px;
+}
+
+.sidebar-main img{    
+    margin-right: 6px;
+    width: 52px;
+}
+
+.sidebar-header h1{ 
+    margin: 0px;    
+}
+
+.sidebar-main a{
+    display: inline-flex;
+    padding: .1875rem .5rem;
+    margin-top: .125rem;
+    margin-left: 1.25rem;    
+    text-decoration: none;
+    color: #252525;
+}
+.sidebar-main a:hover,
+.sidebar-main a:focus{
+    background-color: #efb73e;
+}
+
+.translucent{
+    width: 100%;
+    margin: 0px;
+    padding: 12px;
+    background-color: #25252550;
+}
+
+.hide-side-bar{
+    text-decoration: none;
+    color: #fff;
+}
+
+.hide-side-bar:hover{
+    color: rgb(202, 199, 199);
+}
+
+.ph-x-circle{    
+    font-size: 24px;    
+}
+
+
+
