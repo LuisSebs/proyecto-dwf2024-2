@@ -75,5 +75,47 @@ fa-icon{
     font-size: 24px;    
 }
 
+.search-container{
+    margin: 0px 24px;
+    padding: 4px 8px;
+    display: flex;
+    background-color: #fff;
+    border-radius: 4px;
+}
+
+.scope{
+    cursor: pointer;
+    color: #252525;
+    width: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scope i {
+    font-size: 18px;
+}
+
+.bar-search{    
+    color: #252525;
+    background-color: #ffffff00;
+    width: 100%;
+    border: none;
+    outline: none;
+}
+
+.clear-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .clear-icon i {
+    color: #252525;
+    font-size: 24px;
+  }
+
+
 
 

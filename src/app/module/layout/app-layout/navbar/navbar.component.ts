@@ -23,6 +23,8 @@ export class NavbarComponent {
     // Datos
     categories: Category[] = [];
 
+    // Input de la barra de busqueda
+    searchQuery: string = "";
 
     constructor(
       private categoryService: CategoryService,
@@ -50,14 +52,18 @@ export class NavbarComponent {
 
     showProductsCategory(category_id: number){
       this.mostrarSidebar = !this.mostrarSidebar;
-      this.router.navigate(['producto/' + category_id]);
+      this.router.navigate(['producto-categoria/' + category_id]);
     }
 
     showSidebar(){
       this.mostrarSidebar = !this.mostrarSidebar;
     }
+
+    clearSearch(){
+      this.searchQuery = '';
+    }
     
-    click(){
-      console.log('click')
+    search(){
+      this.router.navigate(['producto-busqueda/' + this.searchQuery]);
     }
 }

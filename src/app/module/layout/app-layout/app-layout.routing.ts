@@ -19,7 +19,8 @@ export const AppLayoutRoutes: Routes = [
     {path: 'categoria', component: CategoryComponent, canActivate : [authenticationGuard, adminGuard]},
     {path: 'factura', component: InvoiceComponent},
     {path: 'producto-admin', component: ProductComponent, canActivate : [authenticationGuard, adminGuard]},
-    {path: 'producto/:category_id', component: ProductClientComponent},
+    {path: 'producto-categoria/:category_id', component: ProductClientComponent},
+    {path: 'producto-busqueda/:entrada', component: ProductClientComponent},
     {path: 'secured', component: SecuredComponent, canActivate : [authenticationGuard]},
     {path: 'producto/:gtin', component: ProductDetailComponent, canActivate: [authenticationGuard, adminGuard]},
     {path: 'producto-detail/:gtin', component: ProductDetailClientComponent}

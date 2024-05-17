@@ -8,25 +8,36 @@
       <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav me-auto">
           <!--Enlaces pegados al logo-->
-          <li>
+          <li class="nav-item">
             <a role="button" class="nav-link" (click)="showSidebar()">
               <i class="ph ph-list"></i>
               Categorias
             </a>
           </li>
-        </ul>          
-          <ul class="navbar-nav">            
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/register">Register</a>
-            </li>            
-            <li class="nav-item">              
-              <a class="nav-link active" routerLink="/login">
-                <fa-icon [icon]="userIcon"></fa-icon>
-                Login
-                <span class="visually-hidden">(current)</span>
-              </a>
-            </li>
-          </ul>
+        </ul>
+        <!--Barra de busqueda-->
+          <form class="d-flex flex-grow-1 search-container" (ngSubmit)="search()">            
+              <button class="scope btn" type="submit">
+                <i class="ph ph-magnifying-glass"></i>
+              </button>
+              <input class="bar-search" type="search" placeholder="Buscar Store.com" [(ngModel)]="searchQuery" name="busqueda"/>
+              <div *ngIf="searchQuery" class="clear-icon" (click)="clearSearch()">
+                <i class="ph ph-x-circle"></i>
+              </div>
+          </form>
+        <!--Otros enlaces-->
+        <ul class="navbar-nav ms-auto">            
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/register">Register</a>
+          </li>            
+          <li class="nav-item">              
+            <a class="nav-link active" routerLink="/login">
+              <fa-icon [icon]="userIcon"></fa-icon>
+              Login
+              <span class="visually-hidden">(current)</span>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   </nav>
