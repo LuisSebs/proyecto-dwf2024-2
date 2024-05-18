@@ -65,13 +65,12 @@ export class LoginComponent implements OnInit {
             return;
           }
           this.authenticationService.addUserToLocalCache(response.body);
-          this.router.navigateByUrl('/secured');
+          this.router.navigateByUrl('/');
           this.showLoading = false;
         },
         (errorResponse: HttpErrorResponse) => {
           // alert(errorResponse.error.message);
-          this.swal.errorMessage(
-            "Lo sentimos, no se puede iniciar sesión en este momento debido a un problema con nuestros servidores. Por favor, inténtalo de nuevo más tarde.");
+          this.swal.errorMessage(errorResponse.error!.message);
           this.showLoading = false;
         }
       )

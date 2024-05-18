@@ -34,16 +34,25 @@
               </a>
             </li>  
           }    
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/register">Register</a>
-          </li>            
-          <li class="nav-item">              
+          @if(!loggedIn){
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/register">Register</a>
+            </li>
+            <li class="nav-item">              
             <a class="nav-link" routerLink="/login">
               <fa-icon [icon]="userIcon"></fa-icon>
               Login
               <span class="visually-hidden">(current)</span>
             </a>
-          </li>
+            </li>
+          }@else{
+            <li class="nav-item dropdown">              
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Mi cuenta</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" role="button" (click)="logout()">Cerrar Sesion</a>
+              </div>
+            </li>
+          }   
         </ul>
       </div>
     </div>

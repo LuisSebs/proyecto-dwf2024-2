@@ -98,15 +98,19 @@ export class ProductDetailClientComponent {
   }
 
   addToCart(){
-    this.cartService.addToCart({ gtin: this.product.gtin, quantity: this.selectQuery }).subscribe({
-      next: (v) => {
-        console.log(v.body!.message)
-        this.swal.successMessage(v.body!.message);
-      },
-      error: (e) => {
-        console.log(e.error!.message);
-      }
-    });
+    if (localStorage.getItem('token')){
+      this.cartService.addToCart({ gtin: this.product.gtin, quantity: this.selectQuery }).subscribe({
+        next: (v) => {
+          console.log(v.body!.message)
+          this.swal.successMessage(v.body!.message);
+        },
+        error: (e) => {
+          this.swal.errorMessage(e.error!.message);
+        }
+      });
+    }else{
+      this.router.navigate(['/login']);
+      this.swal.informationMessage('Inicia sesion para agregar productos al carrito');
+    }
   }
-
 }

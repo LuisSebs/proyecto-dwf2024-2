@@ -7,6 +7,7 @@ import { CategoryService } from '../../../product/_service/category.service';
 import { Category } from '../../../product/_model/category';
 import { CartService } from '../../../invoice/_service/cart.service';
 import { SwalMessages } from '../../../commons/_dto/swal-messages';
+import { AuthenticationService } from '../../../authentication/_service/authentication.service';
 
 @Component({
   selector: 'app-navbar',
@@ -36,19 +37,29 @@ export class NavbarComponent {
     constructor(
       private categoryService: CategoryService,
       private cartService: CartService,
+      private servicioAutenticacion: AuthenticationService,
       private router: Router,
     ){}
 
     ngOnInit(){
-      if(localStorage.getItem("token")){
-        this.loggedIn = true;
-        let user = JSON.parse(localStorage.getItem('user')!);
-        if (user.rol == 'USER'){
-          this.isUser = true;    
-          this.getCartCount();      
+      this.servicioAutenticacion.isLoggedIn.subscribe(status => {
+        // Si esta logeado
+        if(status){     
+          this.loggedIn = status;     
+          let user = JSON.parse(localStorage.getItem('user')!);
+          if (user.rol == 'USER'){ 
+            this.isUser = true;    
+            this.getCartCount();      
+          } else {
+            this.isUser = false;
+          }
+        }else{
+          this.isUser = false;
+          this.cartItemCount = 0;
+          this.loggedIn = status;
         }
-      }
-      this.getCategories();
+        this.getCategories();
+      });      
     }
 
     getCategories(){
@@ -65,11 +76,7 @@ export class NavbarComponent {
     getCartCount(){
       this.cartService.getCart().subscribe({
         next: (v) => {
-          let count: number = 0;
-          v.body!.map( _ => {
-            count++;
-          });
-          this.cartItemCount = count;
+          this.cartItemCount = v.body!.length;
         },
         error: (e) => {
           this.swal.errorMessage(e.error!.message);
@@ -93,7 +100,11 @@ export class NavbarComponent {
     search(){
       if (this.searchQuery.trim() !== ''){
         this.router.navigate(['producto/busqueda/' + this.searchQuery]);
-      }
-      
+      }      
+    }
+
+    logout(){
+      this.servicioAutenticacion.logOut();
+      this.router.navigate(['/']);
     }
 }

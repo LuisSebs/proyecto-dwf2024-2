@@ -29,6 +29,19 @@ export class SwalMessages{
         });
     }
 
+    // muestra mensaje de informacion
+    informationMessage(message: string){
+        Swal.fire({
+            position: 'top-end',
+            icon: 'info',
+            toast: true,
+            text: message,
+            background: '#E8F8F8',
+            showConfirmButton: false,
+            timer: 2000
+        });
+    }
+
     // muestra mensaje de error
     errorMessage(message: string){
         Swal.fire({
