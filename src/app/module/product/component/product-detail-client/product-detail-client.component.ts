@@ -23,6 +23,9 @@ export class ProductDetailClientComponent {
   swal: SwalMessages  = new SwalMessages();  
   max: number[] = []; // Cantidad permitida
   selectQuery: number = 1;
+  // flasgs
+  loggedIn = false;
+  isUser = false;
 
   constructor(
     private productService: ProductService,
@@ -37,6 +40,14 @@ export class ProductDetailClientComponent {
     this.gtin = this.route.snapshot.paramMap.get('gtin')!;
     if(this.gtin){
       this.getProduct();
+      if(localStorage.getItem("token")){
+        this.loggedIn = true;
+        let user = JSON.parse(localStorage.getItem('user')!);
+        if (user.rol == 'USER'){
+          this.isUser = true;
+          this.getCart();          
+        }
+      }
     }else{
       this.swal.errorMessage("GTIN inválido"); // show message
     }
@@ -60,8 +71,6 @@ export class ProductDetailClientComponent {
     this.productImageService.getProductImages(this.product.product_id).subscribe({
       next: (v) => {
         this.productImgs = v.body!;   
-        console.log(this.product);
-        console.log(this.productImgs);
       },
       error: (e) => {
         console.log(e);
@@ -77,11 +86,22 @@ export class ProductDetailClientComponent {
     return `$ ${precioFormateado}`;
   }
 
+  getCart(){
+    this.cartService.getCart().subscribe({
+      next: (v) => {
+        console.log(v.body!);
+      },
+      error: (e) => {
+        console.log(e.error!.message);
+      }
+    });
+  }
+
   addToCart(){
-    console.log(this.selectQuery)
     this.cartService.addToCart({ gtin: this.product.gtin, quantity: this.selectQuery }).subscribe({
       next: (v) => {
         console.log(v.body!.message)
+        this.swal.successMessage(v.body!.message);
       },
       error: (e) => {
         console.log(e.error!.message);

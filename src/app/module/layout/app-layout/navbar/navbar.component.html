@@ -26,12 +26,19 @@
               </div>
           </form>
         <!--Otros enlaces-->
-        <ul class="navbar-nav ms-auto">            
+        <ul class="navbar-nav ms-auto">      
+          @if(loggedIn && isUser){
+            <li class="nav-item">
+              <a role="button" class="nav-link carrito" [attr.data-count]="cartItemCount">
+                <i class="ph ph-shopping-cart"></i>
+              </a>
+            </li>  
+          }    
           <li class="nav-item">
             <a class="nav-link" routerLink="/register">Register</a>
           </li>            
           <li class="nav-item">              
-            <a class="nav-link active" routerLink="/login">
+            <a class="nav-link" routerLink="/login">
               <fa-icon [icon]="userIcon"></fa-icon>
               Login
               <span class="visually-hidden">(current)</span>

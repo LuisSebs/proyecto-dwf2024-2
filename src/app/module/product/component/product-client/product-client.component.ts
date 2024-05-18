@@ -4,7 +4,7 @@ import { DtoProductList } from '../../../product/_dto/dto-product-list';
 import { ProductImage } from '../../../product/_model/product-image';
 import { ProductImageService } from '../../../product/_service/product-image.service';
 import { ProductService } from '../../../product/_service/product.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from '../../_service/category.service';
 import { Category } from '../../_model/category';
 
@@ -30,21 +30,37 @@ export class ProductClientComponent {
   // Product not found status
   productNotFound: boolean = false;
 
+  // Categoria
+  categoria: number | null = null;
+  busqueda: string | null = null;
 
   constructor(
     private categoryService: CategoryService,
     private productService: ProductService,
     private productImageService: ProductImageService,    
     private router: Router,
+    private route: ActivatedRoute,
   ){}
 
   ngOnInit(){
-    this.getProducts();
-    this.getActiveCategories();
+    this.route.paramMap.subscribe(params => {
+      const category_id = params.get('category_id');
+      const entrada = params.get('entrada');
+
+      if (category_id !== null) {
+        this.categoria = parseInt(category_id);
+        this.busqueda = null;
+        this.getProductsByCategory();
+      } else if (entrada !== null) {
+        this.categoria = null;
+        this.busqueda = entrada;
+        this.getProductsBySearch();
+      }
+    });
   }
 
-  getProducts(){
-    this.productService.getProducts().subscribe({
+  getProductsByCategory(){
+    this.productService.getProductsByCategory(this.categoria!).subscribe({
       next: (v) => {
         this.products = v.body!;
         // Agregamos las imagenes
@@ -71,40 +87,39 @@ export class ProductClientComponent {
     });
   }
 
+  getProductsBySearch(){
+    this.productService.getActiveProducts().subscribe({
+      next: (v) => {
+        this.products = v.body!;
+        this.productsFound = this.products.filter(product => {
+          return product.product.toLowerCase().includes(this.busqueda!.toLowerCase());
+        });
+        if (this.productsFound.length === 0){
+          this.productNotFound = true;
+        }else{
+          this.productsFound.map(product => {
+            let images = this.productImageService.getProductImages(product.product_id).subscribe({
+              next: (v) => {
+                product.image = v.body![0];              
+                // console.log(product.image);
+              },
+              error: (e) => {
+                console.log(e);
+                this.swal.errorMessage(e.error!.message); // show message
+              }
+            })
+          })
+          this.productNotFound = false;
+        }
+      },
+      error: (e) => {
+        console.log(e.error!.message)
+      }
+    });
+  }
+
   showProduct(gtin: string){
     this.router.navigate(['producto-detail/' + gtin]);
-  }
-
-  searchProduct(){
-    if (this.searchQuery.trim() === ''){
-      this.productsFound = [... this.products];
-    }else{
-      // Filtramos por nombre de producto
-      this.productsFound = this.products.filter(product => {
-        return product.product.toLowerCase().includes(this.searchQuery.toLowerCase());
-      });
-      if (this.productsFound.length === 0){
-        this.productNotFound = true;
-      }else{
-        this.productNotFound = false;
-      }
-    }
-  }
-
-  searchProductByCategory(){
-    if (this.selectQuery === '-1'){
-      this.productsFound = [... this.products];
-    }else{
-      // Filtramos por categoria
-      this.productsFound = this.products.filter(product => {
-        return product.category_id === Number(this.selectQuery);
-      });
-      if (this.productsFound.length === 0){
-        this.productNotFound = true;
-      }else{
-        this.productNotFound = false;
-      }
-    }
   }
 
   getActiveCategories(){

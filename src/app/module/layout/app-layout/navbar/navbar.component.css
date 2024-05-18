@@ -3,10 +3,6 @@
     margin-right: 12px;    
 }
 
-fa-icon{
-    color: #fff;
-}
-
 .navbar{
     background-color: #252525 !important;
 }
@@ -14,11 +10,11 @@ fa-icon{
 .sidebar{
     width: 100%;
     height: 100%;
-    position: fixed;
+    position: fixed;    
     top: 0;
-    left: 0;    
-    z-index: 1;
+    left: 0;
     display: flex;
+    z-index: 2;
 }
 
 .sidebar-main{
@@ -116,6 +112,35 @@ fa-icon{
     font-size: 24px;
   }
 
+  .carrito{
+    margin: 0px;
+    padding: 0px;
+    height: 100%;    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .carrito i {
+    font-size: 24px;
+  }
+
+  .carrito::after{
+    content: attr(data-count);
+    position: absolute;
+    top: 0px; /* Ajusta según sea necesario */
+    right: -3px; /* Ajusta según sea necesario */
+    background: red;
+    color: white;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px; /* Ajusta el tamaño de la fuente según sea necesario */
+  }
 
 
 

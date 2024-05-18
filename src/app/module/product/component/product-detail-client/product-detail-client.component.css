@@ -36,12 +36,21 @@
     text-align: center;
 }
 
+.carousel-control-next,
+.carousel-control-prev{
+    pointer-events: none;
+}
+
 .carousel-control-prev-icon{
     background-color: #252525;
+    pointer-events: all;
+    z-index: 0;
 }
 
 .carousel-control-next-icon{
     background-color: #252525;
+    pointer-events: all;
+    z-index: 0;
 }
 
 

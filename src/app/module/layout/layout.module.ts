@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { AppLayoutRoutes } from './app-layout/app-layout.routing';
 import { HomeComponent } from './app-layout/home/home.component';
 import { ExperienceComponent } from './react/experience/experience.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ExperienceComponent } from './react/experience/experience.component';
   imports: [
     CommonModule,
     FontAwesomeModule,
+    FormsModule,
     RouterModule.forChild(AppLayoutRoutes)
   ]
 })

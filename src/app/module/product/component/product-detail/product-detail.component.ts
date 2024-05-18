@@ -56,7 +56,6 @@ export class ProductDetailComponent {
     private categoryService: CategoryService,
     private route: ActivatedRoute,
     private router: Router, // router por si queremos redirigir a otro componente
-
     private service: NgxPhotoEditorService
   ){}
 
