@@ -29,7 +29,7 @@
         <ul class="navbar-nav ms-auto">      
           @if(loggedIn && isUser){
             <li class="nav-item">
-              <a role="button" class="nav-link carrito" [attr.data-count]="cartItemCount">
+              <a routerLink="/carrito-detalle" class="nav-link carrito" [attr.data-count]="cartItemCount">
                 <i class="ph ph-shopping-cart"></i>
               </a>
             </li>  

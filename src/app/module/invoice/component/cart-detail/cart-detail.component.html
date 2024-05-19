@@ -1,0 +1,30 @@
+<div class="card-body">
+    <h1>Mi Carrito</h1>
+    <div class="main-container">
+        <!--Productos-->
+        <div class="products-container">
+            @for(product of products; track product){
+                <div class="product">                
+                    <img class="image-product" src="{{ product.image !== '' ? product.image : imageDefault }}" alt="imagen producto">
+                    <div class="product-information">
+                      <p>{{ product.product.description }}</p>
+                      <p>Total: {{ priceFormat(product.product.price) }} </p>
+                      <span>Cantidad: </span>
+                      <select class="cantidad">
+                        <option value="1">{{ product.quantity }}</option>
+                      </select>
+                    </div>
+                </div>
+                <hr>
+            }
+        </div>
+        <!--Total-->
+        <div class="total-information">
+            <p class="subtotal">Subtotal ({{ products.length }} productos): {{ priceFormat(total) }}</p>
+            <p>Costo de envio: Gratis</p>
+            <hr>
+            <p class="total">Total: {{ priceFormat(total)}}</p>
+            <button class="btn btn-warning">Proceder al pago</button>
+        </div>
+    </div>
+</div>  

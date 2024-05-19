@@ -11,6 +11,7 @@ import { ProductClientComponent } from '../../product/component/product-client/p
 import { adminGuard } from '../../authentication/_guard/admin.guard';
 import { ProductDetailClientComponent } from '../../product/component/product-detail-client/product-detail-client.component';
 import { InvoiceComponent } from '../../invoice/component/invoice/invoice.component';
+import { CartDetailComponent } from '../../invoice/component/cart-detail/cart-detail.component';
 
 export const AppLayoutRoutes: Routes = [
     {path: '', component: HomeComponent},
@@ -18,6 +19,7 @@ export const AppLayoutRoutes: Routes = [
     {path: 'register', component: RegisterComponent},
     {path: 'categoria', component: CategoryComponent, canActivate : [authenticationGuard, adminGuard]},
     {path: 'factura', component: InvoiceComponent},
+    {path: 'carrito-detalle', component: CartDetailComponent},
     {path: 'producto-admin', component: ProductComponent, canActivate : [authenticationGuard, adminGuard]},
     {path: 'producto/categoria/:category_id', component: ProductClientComponent},
     {path: 'producto/busqueda/:entrada', component: ProductClientComponent},
