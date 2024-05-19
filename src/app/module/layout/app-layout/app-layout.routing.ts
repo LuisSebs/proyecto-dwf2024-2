@@ -19,7 +19,7 @@ export const AppLayoutRoutes: Routes = [
     {path: 'register', component: RegisterComponent},
     {path: 'categoria', component: CategoryComponent, canActivate : [authenticationGuard, adminGuard]},
     {path: 'factura', component: InvoiceComponent},
-    {path: 'carrito-detalle', component: CartDetailComponent},
+    {path: 'carrito-detalle', component: CartDetailComponent, canActivate : [authenticationGuard] },
     {path: 'producto-admin', component: ProductComponent, canActivate : [authenticationGuard, adminGuard]},
     {path: 'producto/categoria/:category_id', component: ProductClientComponent},
     {path: 'producto/busqueda/:entrada', component: ProductClientComponent},
