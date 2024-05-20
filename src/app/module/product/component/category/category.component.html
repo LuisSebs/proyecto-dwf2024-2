@@ -1,26 +1,33 @@
 <!--Contenido de la pagina-->
 <div class="body-content">
-<!--Titulo de la vista-->
-<h1>Categorías</h1>
-<div class="card border-warning mb-3">
+<div class="card border-dark mb-3">
     <!--Card Header-->
-    <div class="card-header"></div>
-    <!--Card Body-->
-    <div class="card-body">
-        <!--Card Title-->
-        <h4 class="card-title">Categorías</h4>
-        <!--Boton para agregar categoria-->
-        <button type="button" class="btn btn-primary" style="float: right;" (click)="showModalForm()">
+    <div class="card-header">
+      <div class="row">
+        <div class="col">
+          <h4>Listado de categorias</h4>
+        </div>
+        <div class="col">
+          <!--Boton para agregar categoria-->
+          <button type="button" class="btn btn-warning" style="float: right;" (click)="showModalForm()">
+            <fa-icon [icon]="iconPlus"></fa-icon>
             Nueva categoria
-        </button>
+          </button>
+        </div>        
+      </div>
+    </div>
+    
+    <!--Card Body-->
+    <div class="card-body">    
         <!--Tabla-->
         <table class="table table-hover">
-            <thead>
+            <thead class="thead-dark">
                 <tr class="table-dark">
                     <th scope="col">Id</th>
                     <th scope="col">Acrónimo</th>
                     <th scope="col">Categoría</th>
                     <th scope="col">Estatus</th>
+                    <th>Mas</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,7 +36,33 @@
                         <td> {{ categoria.category_id }} </td>
                         <td> {{ categoria.category }} </td>
                         <td> {{ categoria.acronym }} </td>
-                        <td> {{ categoria.status }} </td>
+                        <td> 
+                          <div class="td-status" [ngClass]="{'td-status-enable': categoria.status == 1, 'td-status-disable': categoria.status == 0}">
+                            {{ categoria.status == 0? "Inactivo" : "Activo" }}
+                          </div>
+                        </td>
+
+                        <td>
+                          <div class="dropdown">
+                            <!-- dots button -->
+                            <button class="dropdown-button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" >
+                              <i class="ph ph-dots-three-outline-vertical icon-menu"></i>
+                            </button>
+
+                            <!-- menu options -->
+                            <div class="dropdown-menu" arial-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" (click)="updateCategory(categoria)">
+                                <i class="ph ph-note-pencil icon-text-ul"></i>Editar
+                              </a>
+                              <a *ngIf="categoria.status == 0" class="dropdown-item enable-item" (click)="activateCategory(categoria.category_id)">
+                                <i class="ph ph-check-circle icon-text-ul"></i>Activar
+                              </a>
+                              <a *ngIf="categoria.status == 1" class="dropdown-item disable-item" (click)="deleteCategory(categoria.category_id)">
+                                <i class="ph ph-x-circle icon-text-ul"></i>Desactivar
+                              </a>
+                            </div>
+                          </div>                            
+                        </td>
                     </tr>
                 }            
             </tbody>
@@ -41,7 +74,12 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Nueva Categoria</h5>
+          @if (categoryToUpdate == 0){
+            <h5 class="modal-title" id="exampleModalLabel">Nueva Categoria</h5>
+          }@else{
+            <h5 class="modal-title" id="exampleModalLabel">{{categoryById(categoryToUpdate)?.category}}</h5>
+          }
+          
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -67,8 +105,12 @@
 	    </div>
 
 	    <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)='onClose()'>Close</button>
-	      <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)='onClose()'>Cerrar</button>
+	      @if(categoryToUpdate == 0){
+          <button type="submit" class="btn btn-primary">Agregar</button>
+        }@else{
+          <button type="submit" class="btn btn-dark">Editar</button>
+        }
 	    </div>
          </form>
        </div>

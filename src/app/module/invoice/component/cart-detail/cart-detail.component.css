@@ -1,0 +1,48 @@
+.card-body{
+    margin: 12px;
+    padding: 12px;
+}
+
+.main-container{
+    display: flex;
+    gap: 12px;
+}
+
+.products-container{
+    width: 100%;
+    border: 1px solid #252525;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.product{
+    display: flex;
+}
+
+.product img {
+    width: 180px;
+}
+
+.product-information{
+    margin-left: 12px;
+}
+
+.cantidad{
+    margin-left: 12px;
+    text-align: center;
+    width: 120px;
+}
+
+.total-information{
+    border: 1px solid #252525;
+    border-radius: 8px;
+    padding: 12px 12px 12px 12px;
+    min-width: 320px;
+    height: 100%;
+}
+
+.total-information button {
+    width: 100%;
+}
+
+

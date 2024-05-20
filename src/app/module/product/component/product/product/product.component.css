@@ -1,0 +1,45 @@
+/*Mensaje de error*/
+.input-error-message{
+    color: #df382c;
+}
+
+.dropdown-button{
+    border: none;
+    color: #252525;
+    background-color: #FF000000;
+}
+
+.dropdown-item{
+    cursor: pointer;
+}
+
+.dropdown-item:hover{
+    color: white !important;
+    background-color: #772953;
+}
+
+.enable-item{
+    color: #38b44a !important;
+    cursor: pointer;
+}
+
+.disable-item{
+    color: #df382c !important;
+    cursor: pointer;
+}
+
+.td-status{
+    position: absolute;
+    width: 100px;
+    text-align: center;
+    border-radius: 8px;
+    color: white;
+}
+
+.td-status-enable{
+    background-color: #2C81BA;
+}
+
+.td-status-disable{
+    background-color: #df382c;
+}

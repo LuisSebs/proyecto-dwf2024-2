@@ -1,0 +1,115 @@
+
+<div class="card-body">
+    <div class="row">
+        <!-- Product image  -->
+        <div class="col-md-4">
+            <div class="card">
+                <div *ngIf="productImgs.length > 1" id="carouselExampleIndicators" class="carousel slide"
+                    data-bs-ride="true">
+                    <div class="carousel-indicators">
+                        <button *ngFor="let item of productImgs; let i = index" type="button" class="indicator"
+                            data-bs-target="#carouselExampleIndicators" [attr.data-bs-slide-to]="i"
+                            [class.active]="i === 0" [attr.aria-current]="i === 0"
+                            [attr.aria-label]="'Slide ' + i"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div *ngFor="let prod of productImgs; let i = index" class="carousel-item"
+                            [class.active]="i === 0">
+                            <div class="carousel-del">
+                            </div>
+                            <img src="{{ prod.image !== '' ? prod.image : imageDefault}}"
+                                class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+                <div *ngIf="productImgs.length <= 1" id="carouselExampleIndicators" class="carousel slide"
+                    data-ride="carousel">                       
+                    <div class="carousel-inner">
+                        <div *ngIf="productImgs.length == 0" class="carousel-item active">
+                            <img src="{{ imageDefault }}" class="d-block w-100" alt="...">
+                        </div>
+                        <div *ngFor="let prod of productImgs" class="carousel-item active">
+                            <div class="carousel-del">
+                            </div>
+                            <img src="{{ prod.image !== '' ? prod.image : imageDefault}}"
+                                class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--Product Data-->
+        <div class="col-md-8 product-data-container">
+            <div class="row-md-6 main-info">
+                <div>
+                    <h3>{{ product.product }}</h3>
+                    <p>Codigo de producto: {{ product.gtin }}</p>
+                    <h1>
+                        {{ priceFormat(product.price * selectQuery ) }}                   
+                    </h1>
+                    <p>
+                        <i class="ph ph-truck"></i>
+                        Envio gratis a todo el pais
+                    </p>
+                    <div>
+                        @if(product.stock > 0){
+                            <span>Cantidad</span>
+                            <select class="cantidad" [(ngModel)]="selectQuery">
+                                @for(i of max; track i){
+                                    <option value="{{ i }}">{{ i }}</option>
+                                }
+                            </select>
+                            <button class="btn btn-warning" (click)="addToCart()">
+                                <i class="ph ph-shopping-cart"></i>
+                                Agregar al carrito
+                            </button>
+                        }@else{
+                            <p>Sin disponibilidad</p>
+                        }
+                    </div>                    
+                </div>
+                <div class="pickup">
+                    <strong>Click & Collect Galerias Insurgentes</strong>
+                    <div>
+                        <p><i class="ph ph-clock-clockwise"></i> Recoge en 2 horas</p>                        
+                        <p><a href="#">Ver disponibilidad en tiendas</a></p>
+                        <p>Aplica para todas tus compras antes de las 6 pm</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row-md-6">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th class="col-md-4" >
+                                Categoría
+                            </th>
+                            <td>
+                                {{ product.category }}
+                            </td>   
+                        </tr>
+                        <tr>
+                            <th class="col-md-4">
+                                Descipción
+                            </th>
+                            <td>
+                                {{ product.description }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

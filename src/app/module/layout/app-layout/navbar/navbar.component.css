@@ -1,0 +1,146 @@
+.logo{
+    width: 32px;
+    margin-right: 12px;    
+}
+
+.navbar{
+    background-color: #252525 !important;
+}
+
+.sidebar{
+    width: 100%;
+    height: 100%;
+    position: fixed;    
+    top: 0;
+    left: 0;
+    display: flex;
+    z-index: 2;
+}
+
+.sidebar-main{
+    min-width: 250px;
+    height: 100%;
+    padding: 15px;
+    background-color: #fff;
+}
+
+.sidebar-header{
+    display: flex;  
+    margin-bottom: 24px;
+}
+
+.sidebar-main img{    
+    margin-right: 6px;
+    width: 52px;
+}
+
+.sidebar-header h1{ 
+    margin: 0px;    
+}
+
+.sidebar-main a{
+    display: inline-flex;
+    padding: .1875rem .5rem;
+    margin-top: .125rem;
+    margin-left: 1.25rem;    
+    text-decoration: none;
+    color: #252525;
+}
+.sidebar-main a:hover,
+.sidebar-main a:focus{
+    background-color: #efb73e;
+}
+
+.translucent{
+    width: 100%;
+    margin: 0px;
+    padding: 12px;
+    background-color: #25252550;
+}
+
+.hide-side-bar{
+    text-decoration: none;
+    color: #fff;
+}
+
+.hide-side-bar:hover{
+    color: rgb(202, 199, 199);
+}
+
+.ph-x-circle{    
+    font-size: 24px;    
+}
+
+.search-container{
+    margin: 0px 24px;
+    padding: 4px 8px;
+    display: flex;
+    background-color: #fff;
+    border-radius: 4px;
+}
+
+.scope{
+    cursor: pointer;
+    color: #252525;
+    width: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scope i {
+    font-size: 18px;
+}
+
+.bar-search{    
+    color: #252525;
+    background-color: #ffffff00;
+    width: 100%;
+    border: none;
+    outline: none;
+}
+
+.clear-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .clear-icon i {
+    color: #252525;
+    font-size: 24px;
+  }
+
+  .carrito{
+    margin: 0px;
+    padding: 0px;
+    height: 100%;    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .carrito i {
+    font-size: 24px;
+  }
+
+  .carrito::after{
+    content: attr(data-count);
+    position: absolute;
+    top: 0px; /* Ajusta según sea necesario */
+    right: -3px; /* Ajusta según sea necesario */
+    background: red;
+    color: white;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px; /* Ajusta el tamaño de la fuente según sea necesario */
+  }
+
+
+

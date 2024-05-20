@@ -1,9 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CategoryComponent } from './module/product/component/category/category.component';
+import { AppLayoutComponent } from './module/layout/app-layout/app-layout.component';
 
 const routes: Routes = [
-  {path: "categoria", component: CategoryComponent}
+ {
+    path: '',
+    component: AppLayoutComponent,
+    children: [{
+      path: '',
+      loadChildren: () => import('./module/layout/layout.module').then(m => m.LayoutModule)
+    }]
+  }
 ];
 
 @NgModule({

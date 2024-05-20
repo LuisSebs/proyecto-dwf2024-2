@@ -1,0 +1,56 @@
+.card-body{
+    padding: 40px;
+}
+
+.product-data-container{
+    padding: 24px;
+    border: 1px solid #25252555;
+    border-radius: 12px;
+}
+
+.main-info{
+    display: flex;
+    margin-bottom: 24px;
+}
+
+.pickup{
+    font-size: small;
+    padding: 40px;
+}
+
+.pickup div{
+    padding: 12px;
+    border: 2px solid #252525;
+    border-radius: 12px;
+    background-color: aliceblue;
+}
+
+.main-info button{
+    width: 100%;
+}
+
+.cantidad{
+    margin-bottom: 12px;
+    margin-left: 12px;
+    width: 100px;
+    text-align: center;
+}
+
+.carousel-control-next,
+.carousel-control-prev{
+    pointer-events: none;
+}
+
+.carousel-control-prev-icon{
+    background-color: #252525;
+    pointer-events: all;
+    z-index: 0;
+}
+
+.carousel-control-next-icon{
+    background-color: #252525;
+    pointer-events: all;
+    z-index: 0;
+}
+
+

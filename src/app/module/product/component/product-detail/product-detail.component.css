@@ -1,0 +1,60 @@
+.card-body-customer{
+    padding: 16px;
+}
+
+.product-image{
+    border-radius: 100%;
+    width: 240px;
+    height: 240px;
+}
+
+.edit-product{
+    color: blue;
+    cursor: pointer;
+    float: right;
+    margin-right: 16px;
+}
+
+.edit-product-image{
+    color: blue;
+    margin-bottom: 16px;
+}
+
+.product-title{
+    font-size: 32px;
+    margin-bottom: 16px;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+.carousel-del {
+    position: absolute;
+    left: 0;
+    top: 15px;
+    z-index: 2;
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 5%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: lightgray;
+    border-radius: 8px;
+    height: 40px;
+    width: 32px;
+}
+
+.btn-edit{
+    margin-right: 20px;
+}
+
+.input-cantidad{
+    border: 2px solid #252525;
+    padding: 8px 80px 6px 4px;
+    border-radius: 8px;
+    background: none;
+    margin-left: 24px;    
+}

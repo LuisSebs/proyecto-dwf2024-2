@@ -1,0 +1,33 @@
+footer{
+    bottom: 0px;
+    padding: 12px;
+    background-color: #252525;    
+}
+
+div {
+    margin: 12px;
+    color: #FFF;
+}
+
+.copyright{
+    text-align: center;
+    color: #FFF;
+}
+
+.media {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+}
+
+.media-icon{
+    fill: #FFF;
+    width: 24px;
+}
+
+.privacy {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+

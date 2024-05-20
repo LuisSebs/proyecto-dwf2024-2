@@ -1,0 +1,80 @@
+<nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+    <div class="container-fluid">
+      <img class="logo" src="../../../../assets/icons8-logo.svg"/>
+      <a class="navbar-brand" href="#">Store</a>      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav me-auto">
+          <!--Enlaces pegados al logo-->
+          <li class="nav-item">
+            <a role="button" class="nav-link" (click)="showSidebar()">
+              <i class="ph ph-list"></i>
+              Categorias
+            </a>
+          </li>
+        </ul>
+        <!--Barra de busqueda-->
+          <form class="d-flex flex-grow-1 search-container" (ngSubmit)="search()">            
+              <button class="scope btn" type="submit">
+                <i class="ph ph-magnifying-glass"></i>
+              </button>
+              <input class="bar-search" type="search" placeholder="Buscar Store.com" [(ngModel)]="searchQuery" name="busqueda"/>
+              <div *ngIf="searchQuery" class="clear-icon" (click)="clearSearch()">
+                <i class="ph ph-x-circle"></i>
+              </div>
+          </form>
+        <!--Otros enlaces-->
+        <ul class="navbar-nav ms-auto">      
+          @if(loggedIn && isUser){
+            <li class="nav-item">
+              <a routerLink="/carrito-detalle" class="nav-link carrito" [attr.data-count]="cartItemCount">
+                <i class="ph ph-shopping-cart"></i>
+              </a>
+            </li>  
+          }    
+          @if(!loggedIn){
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/register">Register</a>
+            </li>
+            <li class="nav-item">              
+            <a class="nav-link" routerLink="/login">
+              <fa-icon [icon]="userIcon"></fa-icon>
+              Login
+              <span class="visually-hidden">(current)</span>
+            </a>
+            </li>
+          }@else{
+            <li class="nav-item dropdown">              
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Mi cuenta</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" role="button" (click)="logout()">Cerrar Sesion</a>
+              </div>
+            </li>
+          }   
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<div class="sidebar" *ngIf="mostrarSidebar">
+  <div class="sidebar-main">
+    <div class="sidebar-header">
+      <img class="logo" src="../../../../assets/icons8-logo-black.svg"/>
+      <h1>Store</h1>
+    </div>
+    <ul class="list-unstyled ps-0">
+      @for(categoria of categories ; track categoria){
+        <li><a role="button" class="rounded" (click)="showProductsCategory(categoria.category_id)" >{{ categoria.category }}</a></li>
+      }
+    </ul>
+  </div>
+  <div class="translucent" (click)="showSidebar()">
+    <a role="button" class="hide-side-bar" (click)="showSidebar()">
+      <i class="ph ph-x-circle"></i>
+    </a>  
+  </div>
+</div>
+
+
