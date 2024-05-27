@@ -25,8 +25,12 @@ export class CartService {
   }
 
   /* REQUERIMIENTO 4. Implementar servicio Cart - función clearCart() */
-  clearCart() {}
+  clearCart() {
+    return this.http.delete<ApiResponse>(api_dwb_uri + this.source, { observe: 'response' });
+  }
 
   /* REQUERIMIENTO 4. Implementar servicio Cart - función removeFromCart() */
-  removeFromCart() {}
+  removeFromCart(cart_id: number) {
+    return this.http.delete<ApiResponse>(api_dwb_uri + this.source + '/' + cart_id , { observe: 'response' });
+  }
 }

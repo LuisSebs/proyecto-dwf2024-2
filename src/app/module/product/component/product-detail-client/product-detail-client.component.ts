@@ -45,7 +45,19 @@ export class ProductDetailClientComponent {
         let user = JSON.parse(localStorage.getItem('user')!);
         if (user.rol == 'USER'){
           this.isUser = true;
-          this.getCart();          
+          this.getCart();
+          // Mostarar mensaje al terminar de recargar la pagina
+          const urlParams = new URLSearchParams(window.location.search);
+          const addedMessage = sessionStorage.getItem('addedMessage');
+          if(urlParams.get('added') === 'true' && addedMessage){
+            this.swal.successMessage(addedMessage);
+            // Eliminamos los parametros de la URL
+            urlParams.delete('added');
+            const newUrl = `${window.location.pathname}?${urlParams.toString()}`
+            window.history.replaceState({}, '', newUrl); // Mantenemos limpio el historial
+            // Eliminamos los mensajes de la sesion
+            sessionStorage.removeItem('addedMessage');
+          }
         }
       }
     }else{
@@ -101,8 +113,11 @@ export class ProductDetailClientComponent {
     if (localStorage.getItem('token')){
       this.cartService.addToCart({ gtin: this.product.gtin, quantity: this.selectQuery }).subscribe({
         next: (v) => {
-          console.log(v.body!.message)
-          this.swal.successMessage(v.body!.message);
+          // Para recargar la pagina y mostrar un mensaje al terminar
+          sessionStorage.setItem('addedMessage', v.body!.message);
+          const url = new URL(window.location.href)
+          url.searchParams.set('added', 'true');
+          window.location.href = url.toString();          
         },
         error: (e) => {
           this.swal.errorMessage(e.error!.message);

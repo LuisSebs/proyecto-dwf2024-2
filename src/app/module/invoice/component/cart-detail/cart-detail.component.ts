@@ -29,6 +29,20 @@ export class CartDetailComponent {
 
   ngOnInit(){
     this.getCart();
+
+    // Mostrar mensaje al terminar de recargar la pagina
+    const urlParams = new URLSearchParams(window.location.search);
+    const deletedMessage = sessionStorage.getItem('deletedMessage');
+    if(urlParams.get('deleted') === 'true' && deletedMessage){
+      this.swal.successMessage(deletedMessage);
+      // Eliminamos los parametros de la URL
+      urlParams.delete('deleted');
+      const newUrl = `${window.location.pathname}?${urlParams.toString()}`
+      window.history.replaceState({}, '', newUrl); // Mantenemos limpio el historial
+
+      // Eliminamos los mensajes de la sesion
+      sessionStorage.removeItem('deletedMessage');
+    }
   }
 
   getCart(){
@@ -42,6 +56,44 @@ export class CartDetailComponent {
       },
       error: (e) => {
         this.swal.errorMessage(e.error!.message);
+      }
+    });
+  }
+
+  removeFromCart(cart_id: any){
+    this.cartService.removeFromCart(cart_id).subscribe({
+      next: (v) => {
+        sessionStorage.setItem('deletedMessage', v.body!.message);
+        const url = new URL(window.location.href);   
+        url.searchParams.set('deleted', 'true');    
+        window.location.href = url.toString();            
+      },
+      error: (e) => {
+        this.swal.errorMessage(e.error!.message);
+      }
+    });
+  }
+
+  clearCart(){
+    this.swal.confirmMessage.fire({
+      title: '¿Estas seguro que quieres eliminar estos productos?',
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Confirmar',
+    }).then((result: any) => {
+      if (result.isConfirmed){
+        this.cartService.clearCart().subscribe({
+          next: (v) => {
+            sessionStorage.setItem('deletedMessage', v.body!.message);
+            const url = new URL(window.location.href);   
+            url.searchParams.set('deleted', 'true');    
+            window.location.href = url.toString();  
+          },
+          error: (e) => {
+            this.swal.errorMessage(e.error!.message);
+          }
+        });
       }
     });
   }
