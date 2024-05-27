@@ -5,6 +5,8 @@ import { CartService } from '../../_service/cart.service';
 import { SwalMessages } from '../../../commons/_dto/swal-messages';
 import { ProductImageService } from '../../../product/_service/product-image.service';
 
+declare var $: any;
+
 @Component({
   selector: 'app-cart-detail',
   templateUrl: './cart-detail.component.html',
@@ -106,7 +108,11 @@ export class CartDetailComponent {
   }
 
   click(){
-    alert("Falta implementar el componente de factura");
+    alert('Falta implementar el componente invoice');
+  }
+
+  showModal(){
+    $("#modalForm").modal("show");
   }
 
 }

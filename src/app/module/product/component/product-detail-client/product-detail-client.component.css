@@ -1,5 +1,5 @@
 .card-body{
-    padding: 40px;
+ padding: 40px;
 }
 
 .product-data-container{
@@ -52,5 +52,4 @@
     pointer-events: all;
     z-index: 0;
 }
-
 

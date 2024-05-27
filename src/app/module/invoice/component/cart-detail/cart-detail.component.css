@@ -68,4 +68,27 @@ th, td {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+.modal-content{
+    padding: 24px;
+}
 
+.confirmation{
+    display: flex;
+    font-size: small;
+}
+
+.customer-data *{
+    margin: 0px;
+    padding: 0px;
+}
+
+.customer-data{
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 12px;
+    margin-right: 12px;
+}
+
+.customer-data div {
+    margin-bottom: 8px;
+}
