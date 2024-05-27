@@ -105,4 +105,8 @@ export class CartDetailComponent {
     return `$ ${precioFormateado}`;
   }
 
+  click(){
+    alert("Falta implementar el componente de factura");
+  }
+
 }

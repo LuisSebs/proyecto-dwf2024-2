@@ -26,6 +26,7 @@ export class NavbarComponent {
     mostrarSidebar: boolean = false;
     loggedIn = false;
     isUser = false;
+    isAdmin = false;
 
     // Datos
     categories: Category[] = [];
@@ -48,9 +49,11 @@ export class NavbarComponent {
         if (user.rol == 'USER'){ 
           this.isUser = true;    
           this.getCartCount();      
+        }else if(user.rol == 'ADMIN'){
+          this.isAdmin = true;
         }
-        this.getCategories();
-      }     
+      }
+      this.getCategories();
     }
 
     getCategories(){

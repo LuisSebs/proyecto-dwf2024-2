@@ -51,7 +51,7 @@ export class RegisterComponent {
       })
     },
       (error) => {
-        console.log('Error en llamada a la API de registro');
+        console.log(error.error!.message);
       },
       () => {
         console.log('Bloque de codigo que se ejecuta siempre. Sin importar si se ejecuto con exito o con error');

@@ -128,4 +128,8 @@ export class ProductDetailClientComponent {
       this.swal.informationMessage('Inicia sesion para agregar productos al carrito');
     }
   }
+
+  back(){
+    window.history.back();
+  }
 }
