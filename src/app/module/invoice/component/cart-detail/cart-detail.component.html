@@ -2,13 +2,38 @@
     <h1>Mi Carrito</h1>
     <div class="main-container">
         <!--Productos-->
-        <div class="products-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Total</th>
+                    <th>Mas</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(product of products; track product){
+                    <tr>
+                        <td><img class="image-product" src="{{ product.image !== '' ? product.image : imageDefault }}" alt="imagen producto"> <span class="product-name" >{{ product.product.product }}</span></td>
+                        <td>{{ priceFormat(product.product.price) }}</td>
+                        <td>
+                            {{ product.quantity }}
+                        </td>
+                        <td class="total">{{ priceFormat(product.product.price * product.quantity) }}</td>
+                        <td><button class="btn btn-danger"><i class="ph ph-trash"></i></button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <!-- <div class="products-container">
             @for(product of products; track product){
                 <div class="product">                
-                    <img class="image-product" src="{{ product.image !== '' ? product.image : imageDefault }}" alt="imagen producto">
+                    <img class="image-pro´duct" src="{{ product.image !== '' ? product.image : imageDefault }}" alt="imagen producto">
                     <div class="product-information">
-                      <p>{{ product.product.description }}</p>
-                      <p>Total: {{ priceFormat(product.product.price) }} </p>
+                      <p>{{ product.product.product }}</p>
+                      <p>Precio: {{ priceFormat(product.product.price) }}</p>
+                      <p>Total: <span class="total">{{ priceFormat(product.product.price * product.quantity) }} </span></p>
                       <span>Cantidad: </span>
                       <select class="cantidad">
                         <option value="1">{{ product.quantity }}</option>
@@ -17,13 +42,30 @@
                 </div>
                 <hr>
             }
-        </div>
+        </div> -->
         <!--Total-->
         <div class="total-information">
-            <p class="subtotal">Subtotal ({{ products.length }} productos): {{ priceFormat(total) }}</p>
-            <p>Costo de envio: Gratis</p>
+            <div>
+                <p class="subtotal">Subtotal ({{ products.length }} productos): </p>
+                <p>{{ priceFormat(total) }}</p>
+            </div>
+            <div>
+                <p>Descuento:</p>
+                <p>$0.00</p>
+            </div>
+            <div>
+                <p>Cupones:</p>
+                <p>$0.00</p>
+            </div>    
+            <div>
+                <p>Costo de envio:</p>
+                <p>Gratis</p>
+            </div>            
             <hr>
-            <p class="total">Total: {{ priceFormat(total)}}</p>
+            <div>
+                <p>Total (IVA incluido):</p>
+                <p class="total">{{ priceFormat(total)}}</p>
+            </div>
             <button class="btn btn-warning">Proceder al pago</button>
         </div>
     </div>

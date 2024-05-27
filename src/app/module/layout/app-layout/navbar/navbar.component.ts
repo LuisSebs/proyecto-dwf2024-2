@@ -42,24 +42,15 @@ export class NavbarComponent {
     ){}
 
     ngOnInit(){
-      this.servicioAutenticacion.isLoggedIn.subscribe(status => {
-        // Si esta logeado
-        if(status){     
-          this.loggedIn = status;     
-          let user = JSON.parse(localStorage.getItem('user')!);
-          if (user.rol == 'USER'){ 
-            this.isUser = true;    
-            this.getCartCount();      
-          } else {
-            this.isUser = false;
-          }
-        }else{
-          this.isUser = false;
-          this.cartItemCount = 0;
-          this.loggedIn = status;
+      if(localStorage.getItem('token')){
+        this.loggedIn = true;   
+        let user = JSON.parse(localStorage.getItem('user')!);
+        if (user.rol == 'USER'){ 
+          this.isUser = true;    
+          this.getCartCount();      
         }
         this.getCategories();
-      });      
+      }     
     }
 
     getCategories(){
@@ -105,6 +96,6 @@ export class NavbarComponent {
 
     logout(){
       this.servicioAutenticacion.logOut();
-      this.router.navigate(['/']);
+      location.assign('/');    
     }
 }

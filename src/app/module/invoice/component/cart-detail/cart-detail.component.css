@@ -15,6 +15,11 @@
     padding: 12px;
 }
 
+.product * {
+    margin:  0px 0px 12px 12px;
+    padding: 0px;
+}
+
 .product{
     display: flex;
 }
@@ -30,6 +35,19 @@
 .cantidad{
     margin-left: 12px;
     text-align: center;
+    width: 64px;
+}
+
+
+th, td {
+    vertical-align: middle;
+}
+
+.product-name{
+    margin-left: 24px;
+}
+
+.image-product{
     width: 120px;
 }
 
@@ -39,10 +57,26 @@
     padding: 12px 12px 12px 12px;
     min-width: 320px;
     height: 100%;
+    font-size: 14px;
+}
+
+.total-information div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.total-information div p {
+    margin: 0px;
+    padding: 0px;
 }
 
 .total-information button {
+    margin-top: 12px;
     width: 100%;
+}
+
+.total {
+    color: red;
 }
 
 
