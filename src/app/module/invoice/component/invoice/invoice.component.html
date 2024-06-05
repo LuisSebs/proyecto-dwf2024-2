@@ -18,7 +18,7 @@
 
         <table class="table">
             <thead class="thead-dark">
-              <tr class="table-primary">
+              <tr class="table-dark">
                 <th>No.</th>
                 <th>Código</th>
                 <th>Monto total</th>
@@ -40,10 +40,8 @@
                             <button class="dropdown-button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                               <i class="ph ph-dots-three-outline-vertical icon-menu"></i>
                             </button>
-        
-        
                             <!-- menu options -->
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" (click)="verFactura()">
                                 <a class="dropdown-item">
                                     <i class="ph ph-eye icon-text-ul"></i>Ver detalles
                                 </a>

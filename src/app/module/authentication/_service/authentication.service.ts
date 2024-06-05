@@ -16,15 +16,10 @@ export class AuthenticationService {
   private urlLogin = urlApiLoginUsuario;
   private jwtHelper = new JwtHelperService();
 
-  private loggedIn = new BehaviorSubject<boolean>(!!localStorage.getItem('token'));
 
   constructor(private http: HttpClient) { 
     this.token = '';
     this.loggedInUsername = '';
-  }
-
-  get isLoggedIn(): Observable<boolean>{
-    return this.loggedIn.asObservable();
   }
 
 
@@ -38,13 +33,11 @@ export class AuthenticationService {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
     localStorage.removeItem('users');
-    this.loggedIn.next(false);
   }
 
   public saveToken(token: string ): void {
     this.token = token;
     localStorage.setItem('token', token);
-    this.loggedIn.next(true);
   }
 
   public addUserToLocalCache(user: LoginResponse): void {

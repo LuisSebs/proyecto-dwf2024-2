@@ -47,4 +47,8 @@ export class InvoiceComponent {
     // Formatear la fecha a un formato deseado
     return date.toLocaleDateString('en-US');
   }
+
+  verFactura(){
+    alert("Falta implementar ver detalles de factura");
+  }
 }

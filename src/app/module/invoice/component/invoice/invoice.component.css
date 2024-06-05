@@ -1,0 +1,14 @@
+.dropdown-button{
+    border: none;
+    color: #252525;
+    background-color: #FF000000;
+}
+
+.dropdown-item{
+    cursor: pointer;
+}
+
+.dropdown-item:hover{
+    color: white !important;
+    background-color: #772953;
+}
