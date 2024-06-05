@@ -49,6 +49,14 @@ export class CartDetailComponent {
       // Eliminamos los mensajes de la sesion
       sessionStorage.removeItem('deletedMessage');
     }
+    const purchasedMessage = sessionStorage.getItem('purchasedMessage');
+    if(urlParams.get('purchased') === 'true' && purchasedMessage){
+      this.swal.successMessage(purchasedMessage);
+      urlParams.delete('purchased');
+      const newUrl = `${window.location.pathname}?${urlParams.toString()}`
+      window.history.replaceState({}, '', newUrl);
+      sessionStorage.removeItem('purchasedMessage');
+    }
   }
 
   getCart(){
@@ -131,9 +139,13 @@ export class CartDetailComponent {
         this.hideModalForm();
         this.invoiceService.generateInvoice().subscribe(
           (res) => {
-            this.swal.successMessage('Factura generada satisfactoriamente.');
             this.cartService.clearCart();
-            this.getCart();
+            //this.getCart();
+            sessionStorage.setItem('purchasedMessage', res.message);
+            const url = new URL(window.location.href)
+            url.searchParams.set('purchased', 'true');
+            window.location.href = url.toString();   
+            // this.swal.successMessage('Factura generada satisfactoriamente.');            
           },
           (err) => {
             this.swal.errorMessage('Un error ha ocurrido al generar la factura.');
