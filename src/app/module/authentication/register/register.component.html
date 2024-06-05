@@ -2,80 +2,160 @@
     <div>        
         <div class="card border-dark mb-3 content">                    
             <div class="d-flex justify-content-center form_container">                
-                <form #formularioLogin="ngForm" (ngSubmit)="onSubmit()">
+                <form [formGroup]="formRegister" (ngSubmit)="onSubmit()">
                     <h2>Crear cuenta</h2>
                     <!--Nombres-->
-                    <div class="input-group mb-3">
-                        <div class="input-group-append">
-                            <span class="input-group-text"><fa-icon [icon]="userIcon"></fa-icon></span>
+                    <label for="name">Nombre(s)</label>
+                    <div class="input-container">
+                        <span class="input-group-text icon"><fa-icon [icon]="userIcon"></fa-icon></span>
+                        <div class="has-danger">
+                            <input 
+                                type="text" 
+                                formControlName="name" 
+                                placeholder="Nombre(s)"
+                                [ngClass]="{
+                                    'form-control': true,
+                                    'is-invalid': formRegister.controls['name'].errors && formRegister.controls['name'].touched
+                                }"
+                            >
+                            <div class="invalid-feedback">Ingresa un nombre valido</div>
                         </div>
-                        <input type="text" class="form-control" name="name" placeholder="Nombre(s)"
-                            [(ngModel)]="usuario.name" required>
-                    </div>
-
+                    </div>                                                       
+                           
                     <!--Apellidos-->
-                    <div class="input-group mb-3">
-                        <div class="input-group-append">
-                            <span class="input-group-text"><fa-icon [icon]="surnameIcon"></fa-icon></span>
+                    <label for="surname">Apellidos</label>
+                    <div class="input-container">
+                        <span class="input-group-text icon"><fa-icon [icon]="surnameIcon"></fa-icon></span>
+                        <div class="has-danger">                                
+                            <input 
+                                type="text" 
+                                id="surname" 
+                                formControlName="surname" 
+                                placeholder="Apellido(s)"
+                                [ngClass]="{
+                                    'form-control': true,
+                                    'is-invalid': formRegister.controls['surname'].errors && formRegister.controls['surname'].touched
+                                }"
+                            >
+                            <div class="invalid-feedback" >Ingresa apellidos validos</div>
                         </div>
-                        <input type="text" class="form-control" name="surname" placeholder="Apellido(s)"
-                            [(ngModel)]="usuario.surname" required>
-                    </div>
+                    </div>                        
 
                     <!--Direccion-->
-                    <div class="input-group mb-3">
-                        <div class="input-group-append">
-                            <span class="input-group-text"><fa-icon [icon]="addressIcon"></fa-icon></span>
-                        </div>                        
-                        <input type="text" class="form-control" name="address" placeholder="Dirección"
-                            [(ngModel)]="usuario.address" required>
-                    </div>
-
-                    <!--Email-->
-                    <div class="input-group mb-3">
-                        <div class="input-group-append">
-                            <span class="input-group-text"><fa-icon [icon]="mailIcon"></fa-icon></span>
+                    <label for="address">Dirección</label>
+                    <div class="input-container">
+                        <span class="input-group-text icon"><fa-icon [icon]="addressIcon"></fa-icon></span>
+                        <div class="has-danger">
+                            <input 
+                                type="text" 
+                                id="address" 
+                                formControlName="address" 
+                                placeholder="Dirección"
+                                [ngClass]="{
+                                    'form-control': true,
+                                    'is-invalid': formRegister.controls['address'].errors && formRegister.controls['address'].touched
+                                }"
+                            >
+                            <div class="invalid-feedback">Ingresa una dirección</div>
                         </div>
-                        <input type="mail" class="form-control" name="mail" placeholder="Email"
-                            [(ngModel)]="usuario.mail" required>
-                    </div>
+                    </div>                        
+                    
+                    <!--Email-->
+                    <label for="mail">Email</label>
+                    <div class="input-container">
+                        <span class="input-group-text icon"><fa-icon [icon]="mailIcon"></fa-icon></span>
+                        <div class="has-danger">
+                            <input 
+                                type="mail" 
+                                id="mail" 
+                                formControlName="mail" 
+                                placeholder="Email"
+                                [ngClass]="{
+                                    'form-control': true,
+                                    'is-invalid': formRegister.controls['mail'].errors && formRegister.controls['mail'].touched
+                                }"
+                            >
+                            <div class="invalid-feedback">Ingresa un correo valido</div>
+                        </div>
+                    </div>                        
 
                     <!--Username-->
-                    <div class="input-group mb-3">
-                        <div class="input-group-append">
-                            <span class="input-group-text"><fa-icon [icon]="usernameIcon"></fa-icon></span>
+                    <label for="username">Username</label>
+                    <div class="input-container">
+                        <span class="input-group-text icon"><fa-icon [icon]="usernameIcon"></fa-icon></span>
+                        <div class="has-danger">
+                            <input 
+                                type="text" 
+                                id="username" 
+                                formControlName="username" 
+                                placeholder="Username"
+                                [ngClass]="{
+                                    'form-control': true,
+                                    'is-invalid': formRegister.controls['username'].errors && formRegister.controls['username'].touched
+                                }"
+                            >
+                            <div class="invalid-feedback">Ingresa un nombre de usuario</div>
                         </div>
-                        <input type="text" class="form-control" name="username" placeholder="Username"
-                            [(ngModel)]="usuario.username" required>
-                    </div>
+                    </div>                        
 
                     <!--Contraseña-->
-                    <div class="input-group mb-3">
-                        <div class="input-group-append">
-                            <span class="input-group-text"><fa-icon [icon]="passwordIcon"></fa-icon></span>
-                        </div>
-                        <input type="password" class="form-control" name="password" placeholder="Contraseña"
-                            [(ngModel)]="usuario.password" required>
-                    </div>
-
+                    <label for="password">Contraseña</label>
+                    <div class="input-container">
+                        <span class="input-group-text icon"><fa-icon [icon]="passwordIcon"></fa-icon></span>
+                        <div class="has-danger">
+                            <input 
+                                type="password" 
+                                id="password" 
+                                formControlName="password" 
+                                placeholder="Contraseña"
+                                [ngClass]="{
+                                    'form-control': true,
+                                    'is-invalid': formRegister.controls['password'].errors && formRegister.controls['password'].touched
+                                }"
+                            >
+                            <div class="invalid-feedback">Ingresa una contraseña</div>
+                        </div>                        
+                    </div>                        
+   
                     <!--Region-->
-                    <div class="input-group mb-3">
-                        <div class="input-group-append">
-                            <span class="input-group-text"><fa-icon [icon]="regionIcon"></fa-icon></span>
+                    <label for="region">Region</label>
+                    <div class="input-container">
+                        <span class="input-group-text icon"><fa-icon [icon]="regionIcon"></fa-icon></span>
+                        <div class="has-danger">
+                            <input 
+                                type="number" 
+                                id="region_id" 
+                                formControlName="region_id" 
+                                placeholder="Region"
+                                [ngClass]="{
+                                    'form-control': true,
+                                    'is-invalid': formRegister.controls['region_id'].errors && formRegister.controls['region_id'].touched
+                                }"
+                            >
+                            <div class="invalid-feedback">Ingresa una region</div>
                         </div>
-                        <input type="number" class="form-control" name="region" placeholder="Region"
-                            [(ngModel)]="usuario.region_id" required>
-                    </div>
+                    </div>                        
 
                     <!--RFC-->
-                    <div class="input-group mb-3">
-                        <div class="input-group-append">
-                            <span class="input-group-text"><fa-icon [icon]="rfcIcon"></fa-icon></span>
-                        </div>
-                        <input type="text" class="form-control" name="rfc" placeholder="RFC"
-                            [(ngModel)]="usuario.rfc" required>
-                    </div>                    
-                    <button type="submit" class="btn btn-warning" [disabled]="formularioLogin.invalid">Enviar</button>
+                    <label for="rfc">RFC</label>
+                    <div class="input-container mb-3">
+                        <span class="input-group-text icon"><fa-icon [icon]="rfcIcon"></fa-icon></span>
+                        <div class="has-danger">
+                            <input 
+                                type="text" 
+                                id="rfc" 
+                                formControlName="rfc" 
+                                placeholder="RFC"
+                                [ngClass]="{
+                                    'form-control': true,
+                                    'is-invalid': formRegister.controls['rfc'].errors && formRegister.controls['rfc'].touched
+                                }"
+                            >
+                            <div class="invalid-feedback">Ingresa un RFC valido</div>
+                        </div>                        
+                    </div>                        
+                 
+                    <button type="submit" class="btn btn-warning" [disabled]="formRegister.invalid">Enviar</button>
                 </form>
             </div>
             <div class="mt-4">

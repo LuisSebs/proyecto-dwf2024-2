@@ -231,6 +231,10 @@ export class ProductDetailComponent {
     });
   }
 
+  back(){
+    window.history.back();
+  }
+
   hideModalForm(){
     $("#modalForm").modal("hide")
   }

@@ -26,6 +26,7 @@ export class NavbarComponent {
     mostrarSidebar: boolean = false;
     loggedIn = false;
     isUser = false;
+    isAdmin = false;
 
     // Datos
     categories: Category[] = [];
@@ -42,24 +43,17 @@ export class NavbarComponent {
     ){}
 
     ngOnInit(){
-      this.servicioAutenticacion.isLoggedIn.subscribe(status => {
-        // Si esta logeado
-        if(status){     
-          this.loggedIn = status;     
-          let user = JSON.parse(localStorage.getItem('user')!);
-          if (user.rol == 'USER'){ 
-            this.isUser = true;    
-            this.getCartCount();      
-          } else {
-            this.isUser = false;
-          }
-        }else{
-          this.isUser = false;
-          this.cartItemCount = 0;
-          this.loggedIn = status;
+      if(localStorage.getItem('token')){
+        this.loggedIn = true;   
+        let user = JSON.parse(localStorage.getItem('user')!);
+        if (user.rol == 'USER'){ 
+          this.isUser = true;    
+          this.getCartCount();      
+        }else if(user.rol == 'ADMIN'){
+          this.isAdmin = true;
         }
-        this.getCategories();
-      });      
+      }
+      this.getCategories();
     }
 
     getCategories(){
@@ -105,6 +99,6 @@ export class NavbarComponent {
 
     logout(){
       this.servicioAutenticacion.logOut();
-      this.router.navigate(['/']);
+      location.assign('/');    
     }
 }

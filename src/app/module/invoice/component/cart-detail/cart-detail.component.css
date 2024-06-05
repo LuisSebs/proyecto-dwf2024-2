@@ -10,39 +10,85 @@
 
 .products-container{
     width: 100%;
-    border: 1px solid #252525;
     border-radius: 8px;
     padding: 12px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.product{
+.vaciar-carrito{
     display: flex;
+    justify-content: flex-end;
 }
 
-.product img {
-    width: 180px;
+th, td {
+    vertical-align: middle;
 }
 
-.product-information{
-    margin-left: 12px;
+.product-name{
+    margin-left: 24px;
 }
 
-.cantidad{
-    margin-left: 12px;
-    text-align: center;
+.image-product{
     width: 120px;
 }
 
 .total-information{
-    border: 1px solid #252525;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border-radius: 8px;
     padding: 12px 12px 12px 12px;
     min-width: 320px;
     height: 100%;
+    font-size: 14px;
+}
+
+.total-information div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.total-information div p {
+    margin: 0px;
+    padding: 0px;
 }
 
 .total-information button {
+    margin-top: 12px;
     width: 100%;
 }
 
+.total {
+    color: red;
+}
 
+.no-products{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 100px 0px 100px 0px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.modal-content{
+    padding: 24px;
+}
+
+.confirmation{
+    display: flex;
+    font-size: small;
+}
+
+.customer-data *{
+    margin: 0px;
+    padding: 0px;
+}
+
+.customer-data{
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 12px;
+    margin-right: 12px;
+}
+
+.customer-data div {
+    margin-bottom: 8px;
+}

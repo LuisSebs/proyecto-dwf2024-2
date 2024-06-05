@@ -65,7 +65,8 @@ export class LoginComponent implements OnInit {
             return;
           }
           this.authenticationService.addUserToLocalCache(response.body);
-          this.router.navigateByUrl('/');
+          location.assign('/');
+          // this.router.navigateByUrl('/');                 
           this.showLoading = false;
         },
         (errorResponse: HttpErrorResponse) => {

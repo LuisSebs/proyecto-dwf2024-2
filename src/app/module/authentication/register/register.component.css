@@ -15,3 +15,20 @@ h2{
 .btn{
     width: 100%;
 }
+
+label{
+    font-size: small;
+}
+
+.input-container{
+    display: flex;
+}
+
+.valid-feed{
+    font-size: small;
+    color: #38b44a;
+}
+
+.icon{
+    height: 100%;
+}
