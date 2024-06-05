@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { Product } from '../../../product/_model/product';
 import { DtoCartDetails } from '../../_dto/dto-cart-details';
 import { CartService } from '../../_service/cart.service';
 import { SwalMessages } from '../../../commons/_dto/swal-messages';
 import { ProductImageService } from '../../../product/_service/product-image.service';
+import { InvoiceService } from '../../_service/invoice.service';
+import Swal from 'sweetalert2';
 
 declare var $: any;
 
@@ -27,10 +28,13 @@ export class CartDetailComponent {
   constructor(
     private cartService : CartService,
     private productImageService: ProductImageService,
+    private invoiceService: InvoiceService,
   ) {}
 
   ngOnInit(){
     this.getCart();
+
+    // this.invoiceService.getCustomerDetail();
 
     // Mostrar mensaje al terminar de recargar la pagina
     const urlParams = new URLSearchParams(window.location.search);
@@ -107,12 +111,43 @@ export class CartDetailComponent {
     return `$ ${precioFormateado}`;
   }
 
-  click(){
-    alert('Falta implementar el componente invoice');
+  getAmountOfProducts() {
+    let total = 0;
+    for (let product of this.products) {
+      total += product.quantity!;
+    }
+    return total;
+  }
+
+  finishPurchase(){
+    // Preguntamos si se desea finalizar la compra y limpiamos el carrito de ser necesario.
+    Swal.fire({
+      title: "¿Está seguro que desea finalizar la compra?",
+      showCancelButton: true,
+      confirmButtonText: "Aceptar",
+      cancelButtonText: `Cancelar`
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.hideModalForm();
+        this.invoiceService.generateInvoice().subscribe(
+          (res) => {
+            this.swal.successMessage('Factura generada satisfactoriamente.');
+            this.cartService.clearCart();
+            this.getCart();
+          },
+          (err) => {
+            this.swal.errorMessage('Un error ha ocurrido al generar la factura.');
+          }
+        )
+      }
+    });
   }
 
   showModal(){
     $("#modalForm").modal("show");
   }
 
+  hideModalForm(){
+    $("#modalForm").modal("hide")
+  }
 }
